@@ -1,0 +1,2811 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f7f3ea">
+<title>京都 · 二〇二六年五月</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Noto+Serif+TC:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f7f3ea;
+    --paper-light: #fbf8f1;
+    --surface: #ffffff;
+    --line: #d8d0bc;
+    --line-soft: #eae3d0;
+
+    --ink: #1a1815;
+    --ink-soft: #4a4640;
+    --ink-mute: #8a8478;
+    --ink-fade: #b8b1a3;
+
+    /* Travelers — Japanese seasonal palette */
+    --joyce: #1e4458;       /* 藍墨 — deep ink blue */
+    --joyce-bg: #e3ebf0;
+    --zoe: #b86b76;         /* 桃染 — dusty rose */
+    --zoe-bg: #f5e5e7;
+    --hugo: #4f6b3a;        /* 苔色 — moss */
+    --hugo-bg: #e6ece0;
+    --michael: #b8783b;     /* 山吹 — autumn amber */
+    --michael-bg: #f3e8d7;
+
+    /* Reservation accent — vermillion stamp */
+    --seal: #a44a2e;
+    --seal-bg: #f6eadd;
+    --seal-deep: #7a3520;
+
+    --warn: #a44a2e;
+    --warn-bg: #f7e8df;
+
+    --serif-en: "Cormorant Garamond", "Times New Roman", serif;
+    --serif-cjk: "Noto Serif TC", "Source Han Serif TC", serif;
+    --sans: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px;
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif-cjk);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-image:
+      radial-gradient(rgba(180,170,150,0.06) 1px, transparent 1px),
+      radial-gradient(rgba(180,170,150,0.04) 1px, transparent 1px);
+    background-size: 24px 24px, 12px 12px;
+    background-position: 0 0, 6px 6px;
+  }
+
+  /* ============ Layout ============ */
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 18px;
+  }
+
+  /* ============ Hero ============ */
+  .hero {
+    padding: 36px 0 22px;
+    text-align: center;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .hero-mark {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 16px;
+  }
+  .hero-title {
+    font-family: var(--serif-en);
+    font-weight: 300;
+    font-size: 72px;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0;
+  }
+  .hero-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--seal);
+  }
+  .hero-cjk {
+    font-family: var(--serif-cjk);
+    font-weight: 300;
+    font-size: 18px;
+    letter-spacing: 0.36em;
+    color: var(--ink-soft);
+    margin: 10px 0 0;
+    padding-left: 0.36em;
+  }
+  .hero-dates {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-top: 16px;
+  }
+  .hero-dates b {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ============ Travelers ============ */
+  .travelers {
+    padding: 36px 0 28px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .section-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin: 0 0 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::before,
+  .section-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line-soft);
+  }
+  .traveler-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .traveler {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--line-soft);
+    border-radius: 4px;
+    background: var(--paper-light);
+  }
+  .traveler-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif-en);
+    font-weight: 500;
+    font-size: 18px;
+    color: #fff;
+    letter-spacing: 0;
+  }
+  .t-j .traveler-dot { background: var(--joyce); }
+  .t-z .traveler-dot { background: var(--zoe); }
+  .t-h .traveler-dot { background: var(--hugo); }
+  .t-m .traveler-dot { background: var(--michael); }
+
+  .traveler-meta { line-height: 1.3; }
+  .traveler-name {
+    font-family: var(--serif-en);
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--ink);
+  }
+  .traveler-dates {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--ink-mute);
+    margin-top: 2px;
+  }
+
+  /* Reservation key */
+  .key-row {
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background: var(--seal-bg);
+    border-left: 3px solid var(--seal);
+    border-radius: 0 4px 4px 0;
+  }
+  .key-stamp {
+    width: 28px;
+    height: 28px;
+    background: var(--seal);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif-cjk);
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .key-text {
+    font-family: var(--serif-cjk);
+    font-size: 13px;
+    color: var(--seal-deep);
+    line-height: 1.5;
+  }
+
+  /* ============ Sticky Nav ============ */
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(247, 243, 234, 0.92);
+    backdrop-filter: saturate(140%) blur(12px);
+    -webkit-backdrop-filter: saturate(140%) blur(12px);
+    border-bottom: 1px solid var(--line-soft);
+    margin-top: 24px;
+  }
+  .nav-scroll {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 6px;
+  }
+  .nav-scroll::-webkit-scrollbar { display: none; }
+  .nav-scroll a {
+    flex: 0 0 auto;
+    padding: 14px 12px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .nav-scroll a:hover { color: var(--ink); }
+  .nav-scroll a.is-active {
+    color: var(--ink);
+    border-bottom-color: var(--seal);
+  }
+
+  /* ============ Section Heads ============ */
+  section { padding: 24px 0 8px; }
+  .section-eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--seal);
+    margin-bottom: 4px;
+  }
+  .section-heading {
+    font-family: var(--serif-en);
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0 0 4px;
+  }
+  .section-heading em {
+    font-style: italic;
+    color: var(--seal);
+  }
+  .section-sub {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--ink-mute);
+    margin: 0 0 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  /* ============ Overview Table ============ */
+  .overview-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .ov-day {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 40px 1fr 74px;
+    gap: 10px;
+  }
+
+  /* Travelers name column */
+  .ov-travelers {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding-top: 2px;
+    align-items: flex-end;
+    text-align: right;
+    font-family: var(--serif-en);
+  }
+  .t-name {
+    font-family: var(--serif-en);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .t-name.t-joyce { color: var(--joyce); }
+  .t-name.t-zoe { color: var(--zoe); }
+  .t-name.t-hugo { color: var(--hugo); }
+  .t-name.t-michael { color: var(--michael); }
+  .t-name.absent {
+    opacity: 0.32;
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--ink-fade);
+  }
+  .t-name-note {
+    display: block;
+    font-family: var(--serif-cjk);
+    font-size: 9px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--ink-mute);
+    line-height: 1.2;
+    margin-top: -1px;
+    letter-spacing: 0;
+  }
+  .ov-day.hot { background: linear-gradient(to right, transparent, rgba(164, 74, 46, 0.05)); }
+  .ov-date {
+    font-family: var(--serif-en);
+    line-height: 1;
+  }
+  .ov-day-num {
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .ov-day-month {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .ov-day-week {
+    font-family: var(--serif-cjk);
+    font-size: 10px;
+    color: var(--ink-mute);
+    margin-top: 2px;
+    letter-spacing: 0.2em;
+  }
+  .ov-body { min-width: 0; }
+  .ov-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+  }
+  .ov-title {
+    font-family: var(--serif-cjk);
+    font-weight: 600;
+    font-size: 13.5px;
+    color: var(--ink);
+    flex: 1;
+    min-width: 0;
+  }
+  .ov-weather {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    background: var(--paper);
+    padding: 2px 6px;
+    border: 1px solid var(--line-soft);
+    border-radius: 2px;
+  }
+  .ov-weather.hot {
+    color: var(--seal);
+    border-color: var(--seal);
+    background: var(--seal-bg);
+  }
+
+  .ov-acts {
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 0;
+  }
+  .ov-acts li {
+    font-family: var(--serif-cjk);
+    font-size: 12px;
+    color: var(--ink-soft);
+    padding: 2px 0;
+    line-height: 1.5;
+  }
+  .ov-acts .time {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--ink-mute);
+    margin-right: 5px;
+    letter-spacing: 0.04em;
+  }
+  /* Reservation pill inline */
+  .res-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--seal-bg);
+    color: var(--seal-deep);
+    border-left: 2px solid var(--seal);
+    padding: 1px 6px 1px 5px;
+    font-family: var(--serif-cjk);
+    font-size: 11.5px;
+    font-weight: 500;
+    border-radius: 0 3px 3px 0;
+    line-height: 1.4;
+    margin: 1px 0;
+  }
+  .res-pill::before {
+    content: "Booked";
+    font-family: var(--sans);
+    font-size: 8px;
+    font-weight: 700;
+    background: var(--seal);
+    color: #fff;
+    padding: 1px 4px;
+    border-radius: 2px;
+    margin-right: 3px;
+    letter-spacing: 0.04em;
+  }
+  .res-pill .time {
+    color: var(--seal-deep);
+    font-family: var(--sans);
+    font-size: 10.5px;
+    font-weight: 600;
+    margin: 0 3px 0 0;
+  }
+
+  /* ============ Bookings ============ */
+  .booking {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 14px;
+    padding: 16px 14px;
+    background: var(--seal-bg);
+    border-left: 3px solid var(--seal);
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+  .booking-when {
+    line-height: 1.2;
+  }
+  .booking-date {
+    font-family: var(--serif-en);
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--seal-deep);
+  }
+  .booking-time {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--seal);
+    letter-spacing: 0.06em;
+    margin-top: 2px;
+  }
+  .booking-main {
+    min-width: 0;
+  }
+  .booking-name {
+    font-family: var(--serif-cjk);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+  .booking-meta {
+    font-family: var(--serif-cjk);
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+  .booking-people {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+  .booking-people .who {
+    display: flex;
+    gap: 3px;
+  }
+  .booking-people .who .companion {
+    width: 18px;
+    height: 18px;
+    font-size: 9px;
+  }
+  .booking-people .count {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--seal-deep);
+    letter-spacing: 0.1em;
+  }
+
+  /* ============ Day Detail Cards ============ */
+  .day-card {
+    margin-top: 36px;
+    padding: 28px 22px 24px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    position: relative;
+    box-shadow: 0 1px 0 rgba(180,170,150,0.08);
+  }
+  .day-card.hot {
+    border-top: 3px solid var(--seal);
+  }
+
+  .day-header {
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .day-num {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--seal);
+    margin-bottom: 6px;
+  }
+  .day-title {
+    font-family: var(--serif-en);
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.05;
+    color: var(--ink);
+    margin: 0 0 4px;
+  }
+  .day-cjk {
+    font-family: var(--serif-cjk);
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin: 4px 0 0;
+    letter-spacing: 0.06em;
+  }
+  .day-status-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+  .day-companions {
+    display: flex;
+    gap: 4px;
+  }
+  .day-weather {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    padding: 3px 8px;
+    background: var(--paper);
+    border: 1px solid var(--line-soft);
+    border-radius: 2px;
+  }
+  .day-weather.hot {
+    color: var(--seal);
+    border-color: var(--seal);
+    background: var(--seal-bg);
+  }
+
+  /* Timeline */
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-time {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    padding-top: 2px;
+  }
+  .timeline-item.has-res .timeline-time {
+    color: var(--seal);
+  }
+  .timeline-content {
+    min-width: 0;
+  }
+  .timeline-title {
+    font-family: var(--serif-cjk);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.5;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .timeline-item.has-res .timeline-title::before {
+    content: "Booked";
+    display: inline-block;
+    font-family: var(--serif-cjk);
+    font-weight: 600;
+    font-size: 9px;
+    background: var(--seal);
+    color: #fff;
+    padding: 1px 4px;
+    border-radius: 2px;
+    margin-right: 4px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+  }
+  .timeline-who {
+    display: inline-flex;
+    gap: 2px;
+    margin-left: 4px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  /* Name pills replacing initials in timelines + day headers */
+  .who-n {
+    display: inline-block;
+    font-family: var(--serif-en);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin: 1px 2px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  .who-n.joyce   { color: var(--joyce); background: var(--joyce-bg); }
+  .who-n.zoe     { color: var(--zoe); background: var(--zoe-bg); }
+  .who-n.hugo    { color: var(--hugo); background: var(--hugo-bg); }
+  .who-n.michael { color: var(--michael); background: var(--michael-bg); }
+  .who-n.absent  { opacity: 0.3; text-decoration: line-through; text-decoration-thickness: 1px; }
+  .timeline-desc {
+    font-family: var(--serif-cjk);
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    line-height: 1.6;
+  }
+  .timeline-desc strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* Note / Callout */
+  .note {
+    margin: 18px 0;
+    padding: 12px 14px;
+    background: var(--paper-light);
+    border-left: 3px solid var(--ink-fade);
+    border-radius: 0 4px 4px 0;
+    font-family: var(--serif-cjk);
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .note.warn {
+    background: var(--warn-bg);
+    border-left-color: var(--warn);
+    color: var(--seal-deep);
+  }
+  .note-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-right: 6px;
+  }
+  .note.warn .note-label { color: var(--warn); }
+
+  /* Tier 2 subsection */
+  .tier2 {
+    margin-top: 20px;
+    padding: 14px 16px;
+    background: var(--paper-light);
+    border-left: 2px solid var(--line);
+    border-radius: 0 4px 4px 0;
+  }
+  .tier2-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 10px;
+  }
+  .tier2-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .tier2-list li {
+    padding: 6px 0;
+    font-family: var(--serif-cjk);
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .tier2-list li strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* Action items / TODO */
+  .todo-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .todo-list li {
+    padding: 14px 16px;
+    background: var(--paper-light);
+    border-left: 3px solid var(--warn);
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 10px;
+    font-family: var(--serif-cjk);
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .todo-list li strong {
+    display: block;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  /* ============ Culture Cards ============ */
+  .culture-intro {
+    font-family: var(--serif-cjk);
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: 28px;
+    padding: 16px 18px;
+    background: var(--paper-light);
+    border-left: 2px solid var(--seal);
+  }
+
+  .culture-card {
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    padding: 22px 20px;
+    margin-bottom: 18px;
+    border-radius: 4px;
+  }
+
+  .cc-head {
+    border-bottom: 1px solid var(--line-soft);
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+  }
+
+  .cc-day {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--seal);
+    margin-bottom: 6px;
+  }
+
+  .cc-name {
+    font-family: var(--serif-cjk);
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--ink);
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+    margin: 0 0 4px;
+  }
+
+  .cc-romaji {
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-mute);
+    letter-spacing: 0.03em;
+  }
+
+  .cc-section {
+    margin-bottom: 14px;
+  }
+
+  .cc-section:last-child { margin-bottom: 0; }
+
+  .cc-label {
+    font-family: var(--sans);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 6px;
+  }
+
+  .cc-text {
+    font-family: var(--serif-cjk);
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.75;
+  }
+
+  .cc-text strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .cc-text em {
+    font-style: normal;
+    background: linear-gradient(transparent 65%, var(--seal-bg) 65%);
+    padding: 0 2px;
+    color: var(--seal-deep);
+    font-weight: 500;
+  }
+
+  .cc-source {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 8px;
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--ink-fade);
+    padding-bottom: 1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .cc-source:hover {
+    color: var(--seal);
+    border-bottom-color: var(--seal);
+  }
+  .cc-source::after {
+    content: "↗";
+    font-size: 11px;
+    opacity: 0.7;
+  }
+
+  /* ============ Expense Tracker ============ */
+  .expense-intro {
+    font-family: var(--serif-cjk);
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    padding: 14px 16px;
+    background: var(--paper-light);
+    border-left: 2px solid var(--joyce);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .exp-form {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 18px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+
+  .exp-form-title {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 14px;
+  }
+
+  .exp-field {
+    margin-bottom: 12px;
+  }
+
+  .exp-field-label {
+    display: block;
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 5px;
+  }
+
+  .exp-field input,
+  .exp-field select {
+    width: 100%;
+    padding: 9px 11px;
+    font-family: var(--serif-cjk);
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--paper-light);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: border-color 0.15s;
+  }
+
+  .exp-field input:focus,
+  .exp-field select:focus {
+    border-color: var(--seal);
+    background: #fff;
+  }
+
+  .exp-field select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3e%3cpath d='M1 1l4 4 4-4' stroke='%23807a6f' stroke-width='1.2' fill='none' stroke-linecap='round'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 10px;
+    padding-right: 30px;
+  }
+
+  /* Multi-select checkbox grid */
+  .exp-checks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .exp-check {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--paper-light);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: var(--serif-en);
+    font-size: 13px;
+    font-weight: 500;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .exp-check input {
+    width: 14px;
+    height: 14px;
+    margin: 0;
+    accent-color: var(--seal);
+    cursor: pointer;
+  }
+
+  .exp-check.checked {
+    background: var(--seal-bg);
+    border-color: var(--seal);
+    color: var(--seal-deep);
+  }
+
+  .exp-check.checked.joyce { background: var(--joyce-bg); border-color: var(--joyce); color: var(--joyce); }
+  .exp-check.checked.zoe { background: var(--zoe-bg); border-color: var(--zoe); color: var(--zoe); }
+  .exp-check.checked.hugo { background: var(--hugo-bg); border-color: var(--hugo); color: var(--hugo); }
+  .exp-check.checked.michael { background: var(--michael-bg); border-color: var(--michael); color: var(--michael); }
+
+  .exp-btn {
+    width: 100%;
+    padding: 11px 14px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: var(--seal);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: background 0.15s;
+  }
+
+  .exp-btn:hover { background: var(--seal-deep); }
+  .exp-btn:active { transform: translateY(1px); }
+
+  .exp-btn-secondary {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+  }
+
+  .exp-btn-secondary:hover {
+    background: var(--paper-light);
+    color: var(--ink);
+  }
+
+  /* Expense list */
+  .exp-list {
+    margin-bottom: 24px;
+  }
+
+  .exp-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+  }
+
+  .exp-list-title {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  .exp-total {
+    font-family: var(--serif-en);
+    font-size: 14px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .exp-empty {
+    text-align: center;
+    font-family: var(--serif-cjk);
+    font-size: 13px;
+    color: var(--ink-fade);
+    padding: 28px 0;
+    border: 1px dashed var(--line);
+    border-radius: 4px;
+    font-style: italic;
+  }
+
+  .exp-row {
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    border-radius: 3px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+  }
+
+  .exp-row-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+  }
+
+  .exp-row-name {
+    font-family: var(--serif-cjk);
+    font-weight: 600;
+    font-size: 14.5px;
+    color: var(--ink);
+  }
+
+  .exp-row-amount {
+    font-family: var(--serif-en);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--seal);
+    letter-spacing: 0.01em;
+  }
+
+  .exp-row-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: 11px;
+    color: var(--ink-mute);
+  }
+
+  .exp-row-date {
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .exp-row-paid {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .exp-row-paid-label {
+    color: var(--ink-fade);
+  }
+
+  .exp-row-for {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .exp-row-delete {
+    background: none;
+    border: none;
+    color: var(--ink-fade);
+    font-family: var(--sans);
+    font-size: 11px;
+    cursor: pointer;
+    padding: 2px 6px;
+    margin-left: auto;
+  }
+
+  .exp-row-delete:hover { color: var(--warn); }
+
+  /* Settlement section */
+  .settle-box {
+    background: var(--paper-light);
+    border: 2px solid var(--seal);
+    border-radius: 4px;
+    padding: 18px;
+    margin-top: 20px;
+  }
+
+  .settle-title {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--seal);
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  .balance-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 0;
+    font-family: var(--serif-cjk);
+    font-size: 13.5px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .balance-row:last-child { border-bottom: none; }
+
+  .balance-name {
+    font-family: var(--serif-en);
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .balance-amount {
+    font-family: var(--serif-en);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .balance-amount.positive { color: var(--hugo); }
+  .balance-amount.negative { color: var(--seal); }
+
+  .transfers {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .transfer-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: var(--surface);
+    border-radius: 3px;
+    margin-bottom: 6px;
+    font-family: var(--serif-cjk);
+    font-size: 14px;
+    color: var(--ink);
+    flex-wrap: wrap;
+  }
+
+  .transfer-arrow {
+    color: var(--ink-fade);
+    font-family: var(--serif-en);
+  }
+
+  .transfer-amount {
+    margin-left: auto;
+    font-family: var(--serif-en);
+    font-weight: 600;
+    color: var(--seal);
+    font-size: 15px;
+  }
+
+  .settle-empty {
+    text-align: center;
+    padding: 20px 0;
+    font-family: var(--serif-cjk);
+    font-size: 13px;
+    color: var(--ink-mute);
+    font-style: italic;
+  }
+
+  .exp-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 60px 0 80px;
+    text-align: center;
+    border-top: 1px solid var(--line-soft);
+    margin-top: 40px;
+  }
+  .footer-mark {
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 18px;
+    color: var(--ink-mute);
+  }
+  .footer-meta {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-fade);
+    margin-top: 16px;
+  }
+
+  /* Subtle separator */
+  .ornament {
+    text-align: center;
+    margin: 32px 0;
+    font-family: var(--serif-en);
+    font-size: 14px;
+    color: var(--ink-fade);
+    letter-spacing: 1em;
+  }
+
+  /* ============ Responsive ============ */
+  @media (max-width: 480px) {
+    .wrap { padding: 0 16px; }
+    .hero { padding: 44px 0 30px; }
+    .hero-title { font-size: 68px; }
+    .hero-cjk { font-size: 19px; letter-spacing: 0.28em; }
+    .section-heading { font-size: 28px; }
+    .day-card { padding: 22px 16px 20px; }
+    .day-title { font-size: 24px; }
+    .traveler-grid { grid-template-columns: 1fr; }
+    .ov-day { grid-template-columns: 42px 1fr 72px; gap: 8px; }
+    .ov-day-num { font-size: 32px; }
+    .t-name { font-size: 11px; }
+    .booking { grid-template-columns: 70px 1fr; gap: 10px; padding: 14px 12px; }
+    .booking-people {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--seal);
+    }
+    .timeline-item { grid-template-columns: 56px 1fr; gap: 10px; }
+  }
+
+  @media (min-width: 720px) {
+    .wrap { padding: 0 24px; }
+    body { font-size: 16px; }
+  }
+
+  /* Print */
+  @media print {
+    body { background: #fff; }
+    .navbar { display: none; }
+    .day-card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-mark">Travel Journal · MMXXVI</div>
+    <h1 class="hero-title">Ky<em>ō</em>to</h1>
+    <div class="hero-cjk">京 都</div>
+    <div class="hero-dates"><b>May 23 — 28</b> · 2026 · 六日五夜</div>
+  </div>
+</header>
+
+<!-- ============ TRAVELERS ============ -->
+
+<!-- ============ STICKY NAV ============ -->
+<nav class="navbar">
+  <div class="nav-scroll">
+    <a href="#overview">總覽</a>
+    <a href="#day-1">5.23</a>
+    <a href="#day-2">5.24</a>
+    <a href="#day-3">5.25</a>
+    <a href="#day-4">5.26</a>
+    <a href="#day-5">5.27</a>
+    <a href="#day-6">5.28</a>
+    <a href="#culture">文化</a>
+    <a href="#expense">分帳</a>
+  </div>
+</nav>
+
+<!-- ============ OVERVIEW ============ -->
+<section id="overview">
+  <div class="wrap">
+    <div class="section-eyebrow">At a glance</div>
+    <h2 class="section-heading">行程 <em>總覽</em></h2>
+    <p class="section-sub">每日同行者與重點 · "Booked" 標示已確認訂位</p>
+
+    <div class="overview-list">
+
+      <!-- Day 1 -->
+      <a href="#day-1" class="ov-day" style="text-decoration:none;color:inherit;">
+        <div class="ov-date">
+          <div class="ov-day-num">23</div>
+          <div class="ov-day-month">May</div>
+          <div class="ov-day-week">六</div>
+        </div>
+        <div class="ov-body">
+          <div class="ov-head">
+            <div class="ov-title">抵達 · 二寧坂三年坂黃昏散步</div>
+            <div class="ov-weather">21°/17°</div>
+          </div>
+          <ul class="ov-acts">
+            <li><span class="time">15:15</span>KIX 抵達 → Haruka → 民宿</li>
+            <li><span class="time">18:15</span>二寧坂 + 三年坂 + ねねの道 黃昏散步 (日落 18:55)</li>
+            <li><span class="time">20:00</span>祇園輕鬆晚餐</li>
+          </ul>
+        </div>
+        <div class="ov-travelers">
+          <span class="t-name t-joyce">Joyce</span>
+          <span class="t-name t-zoe">Zoe</span>
+          <span class="t-name t-hugo">Hugo</span>
+          <span class="t-name t-michael absent">Michael<span class="t-name-note">翌日抵</span></span>
+        </div>
+      </a>
+
+      <!-- Day 2 -->
+      <a href="#day-2" class="ov-day" style="text-decoration:none;color:inherit;">
+        <div class="ov-date">
+          <div class="ov-day-num">24</div>
+          <div class="ov-day-month">May</div>
+          <div class="ov-day-week">日</div>
+        </div>
+        <div class="ov-body">
+          <div class="ov-head">
+            <div class="ov-title">大原山里 · 柏悅夜景首聚</div>
+            <div class="ov-weather">25°/16°</div>
+          </div>
+          <ul class="ov-acts">
+            <li><span class="time">09:00</span>出發大原 (Joyce, Zoe, Hugo)</li>
+            <li><span class="time">10—15</span>三千院 + 寶泉院 + 寂光院 + 山里午餐</li>
+            <li><span class="time">15:00</span>3 人同的士回町中 · Hugo 下民宿,Michael 已抵</li>
+            <li><span class="res-pill"><span class="time">16:00</span>東山緒方 · Joyce, Zoe</span></li>
+            <li><span class="res-pill"><span class="time">18:30</span>すぢや · Michael, Hugo</span></li>
+            <li><span class="res-pill"><span class="time">20:30</span>琥珀 Kohaku · 4 人</span></li>
+          </ul>
+        </div>
+        <div class="ov-travelers">
+          <span class="t-name t-joyce">Joyce</span>
+          <span class="t-name t-zoe">Zoe</span>
+          <span class="t-name t-hugo">Hugo</span>
+          <span class="t-name t-michael">Michael<span class="t-name-note">14:30 抵京</span></span>
+        </div>
+      </a>
+
+      <!-- Day 3 — hot day -->
+      <a href="#day-3" class="ov-day hot" style="text-decoration:none;color:inherit;">
+        <div class="ov-date">
+          <div class="ov-day-num">25</div>
+          <div class="ov-day-month">May</div>
+          <div class="ov-day-week">一</div>
+        </div>
+        <div class="ov-body">
+          <div class="ov-head">
+            <div class="ov-title">高溫日 · 河原町 Vintage + 藝妓文化夜</div>
+            <div class="ov-weather hot">31°/19°</div>
+          </div>
+          <ul class="ov-acts">
+            <li><span class="time">09:00</span>起床 · 9:30 鴨川邊悠閒早餐</li>
+            <li><span class="time">11—14</span>河原町 vintage 6 家 (BAL 11:00 開) · Joyce, Zoe, Hugo</li>
+            <li><span class="res-pill"><span class="time">14:00</span>400 Kyoto Pizza · 4 人</span></li>
+            <li><span class="res-pill"><span class="time">16:00</span>Gion Theater 藝妓表演 · 4 人</span></li>
+            <li><span class="time">17—19</span>京都百貨補完 · Joyce, Zoe, Hugo</li>
+            <li><span class="res-pill"><span class="time">19:00</span>米處いなもと · 4 人</span></li>
+            <li><span class="time">21:00</span>FUREK LAB0 雞尾酒</li>
+          </ul>
+        </div>
+        <div class="ov-travelers">
+          <span class="t-name t-joyce">Joyce</span>
+          <span class="t-name t-zoe">Zoe</span>
+          <span class="t-name t-hugo">Hugo</span>
+          <span class="t-name t-michael">Michael<span class="t-name-note">民宿工作 · 只赴訂位</span></span>
+        </div>
+      </a>
+
+      <!-- Day 4 -->
+      <a href="#day-4" class="ov-day" style="text-decoration:none;color:inherit;">
+        <div class="ov-date">
+          <div class="ov-day-num">26</div>
+          <div class="ov-day-month">May</div>
+          <div class="ov-day-week">二</div>
+        </div>
+        <div class="ov-body">
+          <div class="ov-head">
+            <div class="ov-title">金閣寺 · 嵐山 · 東寺 · Hugo 道別</div>
+            <div class="ov-weather">28°/20°</div>
+          </div>
+          <ul class="ov-acts">
+            <li><span class="time">08:00</span>民宿出 → 的士 → 金閣寺</li>
+            <li><span class="time">09:00</span>金閣寺 4 人</li>
+            <li><span class="time">10:15</span>Hugo 道別離開(14:00 前須出發)</li>
+            <li><span class="time">10:45</span>嵐山 · 竹林 + 渡月橋 (Joyce, Zoe, Michael)</li>
+            <li><span class="time">PM</span>東寺 · Joyce, Zoe, Michael(五重塔 · 立體曼荼羅)</li>
+            <li><span class="time">18:30</span>晚餐</li>
+          </ul>
+        </div>
+        <div class="ov-travelers">
+          <span class="t-name t-joyce">Joyce</span>
+          <span class="t-name t-zoe">Zoe</span>
+          <span class="t-name t-hugo">Hugo<span class="t-name-note">14:00 前離開</span></span>
+          <span class="t-name t-michael">Michael</span>
+        </div>
+      </a>
+
+      <!-- Day 5 -->
+      <a href="#day-5" class="ov-day" style="text-decoration:none;color:inherit;">
+        <div class="ov-date">
+          <div class="ov-day-num">27</div>
+          <div class="ov-day-month">May</div>
+          <div class="ov-day-week">三</div>
+        </div>
+        <div class="ov-body">
+          <div class="ov-head">
+            <div class="ov-title">分組日 · 美秀(Michael) · 清水寺 + 建仁寺(Joyce, Zoe)</div>
+            <div class="ov-weather">25°/19°</div>
+          </div>
+          <ul class="ov-acts">
+            <li><span class="time">07:00</span>Joyce, Zoe 清水寺(最早人少時段)</li>
+            <li><span class="time">08:00</span>Michael 出發美秀美術館</li>
+            <li><span class="time">09:00</span>二寧坂 + 東山エリア漫步 · Joyce, Zoe</li>
+            <li><span class="res-pill"><span class="time">12:30</span>土井活鰻 · Joyce, Zoe (2 小時)</span></li>
+            <li><span class="time">14:30</span>建仁寺 + 祇園漫步 · Joyce, Zoe</li>
+            <li><span class="time">17:00</span>3 人匯合 · 民宿小休</li>
+            <li><span class="res-pill"><span class="time">19:00</span>KURO KYOTO · 3 人</span></li>
+            <li><span class="res-pill"><span class="time">22:00</span>Hideout KICK Kyoto · speakeasy · 3 人</span></li>
+          </ul>
+        </div>
+        <div class="ov-travelers">
+          <span class="t-name t-joyce">Joyce</span>
+          <span class="t-name t-zoe">Zoe</span>
+          <span class="t-name t-hugo absent">Hugo</span>
+          <span class="t-name t-michael">Michael</span>
+        </div>
+      </a>
+
+      <!-- Day 6 -->
+      <a href="#day-6" class="ov-day" style="text-decoration:none;color:inherit;">
+        <div class="ov-date">
+          <div class="ov-day-num">28</div>
+          <div class="ov-day-month">May</div>
+          <div class="ov-day-week">四</div>
+        </div>
+        <div class="ov-body">
+          <div class="ov-head">
+            <div class="ov-title">輕鬆收尾 · 離開 KIX</div>
+            <div class="ov-weather">24°/19°</div>
+          </div>
+          <ul class="ov-acts">
+            <li><span class="time">08:30</span>民宿早餐</li>
+            <li><span class="time">10:00</span>硬性退房 ⚠</li>
+            <li><span class="time">11:00</span>Haruka → 12:15 抵 KIX</li>
+            <li><span class="time">12:15</span>KIX 4 小時免稅店 + 慢餐</li>
+            <li><span class="time">16:15</span>起飛回港</li>
+          </ul>
+        </div>
+        <div class="ov-travelers">
+          <span class="t-name t-joyce">Joyce</span>
+          <span class="t-name t-zoe">Zoe</span>
+          <span class="t-name t-hugo absent">Hugo</span>
+          <span class="t-name t-michael">Michael</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ DAY 1 ============ -->
+<section id="day-1">
+  <div class="wrap">
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num">Day One · 5.23</div>
+        <h3 class="day-title">Arrival <em>&amp;</em> Twilight</h3>
+        <div class="day-cjk">抵達京都 · 二寧坂三年坂黃昏散步</div>
+        <div class="day-status-row">
+          <div class="day-companions">
+            <span class="who-n joyce">Joyce</span>
+            <span class="who-n zoe">Zoe</span>
+            <span class="who-n hugo">Hugo</span>
+            <span class="who-n michael absent">Michael</span>
+          </div>
+          <div class="day-weather">21° / 17° · 涼爽</div>
+        </div>
+      </div>
+
+      <ul class="timeline">
+        <li class="timeline-item">
+          <div class="timeline-time">15:15</div>
+          <div class="timeline-content">
+            <div class="timeline-title">KIX 抵達</div>
+            <div class="timeline-desc">Haruka 特急 → 京都站(75 分鐘) · 預留 30 分入境 + 取行李</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">17:45</div>
+          <div class="timeline-content">
+            <div class="timeline-title">抵民宿 Check-in</div>
+            <div class="timeline-desc">宮川筋四丁目 605-0801 · Karen 接待 · 整裝小休</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">18:15</div>
+          <div class="timeline-content">
+            <div class="timeline-title">二寧坂 → 三年坂 → ねねの道</div>
+            <div class="timeline-desc"><strong>本次行程最美的黃金時段。</strong>日落 18:55,18:15 - 19:30 走二寧坂三年坂石板坡道:先黃金時段拍坡道全景,再藍時段(blue hour)拍燈下塔影。八坂塔點燈後別有風味。</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">20:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">祇園輕鬆晚餐</div>
+            <div class="timeline-desc">不訂位,看狀態選擇:祇園小路居酒屋、先斗町立飲、四条通拉麵店皆可。長途飛行後輕鬆吃,別給自己壓力</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">Tip</span>二寧坂三年坂日間人潮極多,17:30 後旅行團散去,18:00 - 19:30 是攝影黃金時段。穿好走的鞋,石板路濕滑
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DAY 2 ============ -->
+<section id="day-2">
+  <div class="wrap">
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num">Day Two · 5.24</div>
+        <h3 class="day-title">Ōhara <em>&amp;</em> Reunions</h3>
+        <div class="day-cjk">大原廟院巡遊 · Michael 抵京 · 柏悅首聚</div>
+        <div class="day-status-row">
+          <div class="day-companions">
+            <span class="who-n joyce">Joyce</span>
+            <span class="who-n zoe">Zoe</span>
+            <span class="who-n hugo">Hugo</span>
+            <span class="who-n michael">Michael</span>
+          </div>
+          <div class="day-weather">25° / 16° · 涼爽舒適</div>
+        </div>
+      </div>
+
+      <ul class="timeline">
+        <li class="timeline-item">
+          <div class="timeline-time">09:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">出發大原
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span></span>
+            </div>
+            <div class="timeline-desc">的士 ~30 分鐘 ¥7,000 - 9,000(來回皆建議的士)</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">09:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">抵大原 · 開始巡寺</div>
+            <div class="timeline-desc">5 小時半時間從容遊覽:三千院(往生極樂院、苔庭)→ 寶泉院(枝垂松 · 抹茶坐席遠眺竹林)→ 寂光院(平家物語舞台)。大原的靜謐感最濃,不必趕</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">13:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">blend kyoto 大原店 · 午餐</div>
+            <div class="timeline-desc">山里現代茶屋,輕食 + 茶點。或大原野菜直賣所小店</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">15:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">3 人同的士回町中
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span></span>
+            </div>
+            <div class="timeline-desc">~30 分鐘車程。<strong>Hugo</strong> 下民宿 · Michael(14:30 - 15:30 抵)應已在民宿。<strong>Joyce + Zoe</strong> 繼續到東山緒方附近,15:45 抵,可短暫咖啡稍歇</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">15:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">Hugo + Michael 民宿會合
+              <span class="timeline-who"><span class="who-n hugo">Hugo</span><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">Hugo 帶 Michael 簡短介紹民宿、宮川筋、祇園八坂塔一帶,或附近咖啡。至 18:00 出發すぢや。約 3 小時悠閒</div>
+          </div>
+        </li>
+        <li class="timeline-item has-res">
+          <div class="timeline-time">16:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">東山緒方 · 懷石
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span></span>
+            </div>
+            <div class="timeline-desc">京都頂級懷石之一 · 訂位費已付 · 2.5 - 3 小時</div>
+          </div>
+        </li>
+        <li class="timeline-item has-res">
+          <div class="timeline-time">18:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">すぢや 四条御幸町店 · 串燒
+              <span class="timeline-who"><span class="who-n michael">Michael</span><span class="who-n hugo">Hugo</span></span>
+            </div>
+            <div class="timeline-desc">Michael + Hugo 二人單獨晚餐 · Michael 抵京第一餐</div>
+          </div>
+        </li>
+        <li class="timeline-item has-res">
+          <div class="timeline-time">20:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">琥珀 Kohaku · 京都柏悅
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">4 人首次匯合 · 高層雞尾酒吧夜景 · 訂位費已付</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="tier2">
+        <div class="tier2-label">Tier 2 · 附近可探索</div>
+        <ul class="tier2-list">
+          <li><strong>實光院</strong> · 大原另一隱密寺院,庭園靜謐有契心庭、旭翠園兩處</li>
+          <li><strong>勝林院</strong> · 三千院後方,聲明發祥地</li>
+          <li><strong>大原女小路</strong> · 古道散步,有手作鋪、漬物店</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DAY 3 ============ -->
+<section id="day-3">
+  <div class="wrap">
+    <div class="day-card hot">
+      <div class="day-header">
+        <div class="day-num">Day Three · 5.25</div>
+        <h3 class="day-title">Heat Day <em>·</em> Indoor</h3>
+        <div class="day-cjk">高溫日 · 全日室內購物 · 藝妓文化夜</div>
+        <div class="day-status-row">
+          <div class="day-companions">
+            <span class="who-n joyce">Joyce</span>
+            <span class="who-n zoe">Zoe</span>
+            <span class="who-n hugo">Hugo</span>
+            <span class="who-n michael">Michael</span>
+          </div>
+          <div class="day-weather hot">31° / 19° · 本次最熱</div>
+        </div>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">Heat strategy</span>本日預測 31°C,本次行程最熱一日。<strong>全日室內活動,完全避開戶外暴曬</strong>:vintage 購物、pizza、藝妓表演、米處。所有點均有冷氣
+      </div>
+
+      <div class="note">
+        <span class="note-label">Michael 工作日</span>Michael 5/25 留在民宿工作 ·<strong>只赴 3 個訂位</strong>:14:00 pizza · 16:00 theater · 19:00 米處。其餘時段在民宿
+      </div>
+
+      <ul class="timeline">
+        <li class="timeline-item">
+          <div class="timeline-time">09:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">B STORE 1st · 鴨川邊悠閒早餐
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span></span>
+            </div>
+            <div class="timeline-desc">京町家百年老屋,鴨川邊。<strong>5/1 - 10/15 川床季</strong> · 早餐 8:00 - 11:00。從民宿過四条大橋 ~10 分鐘步行。慢慢吃,1.5 小時也無妨</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">11:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">河原町 vintage 巡禮
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span></span>
+            </div>
+            <div class="timeline-desc">11:00 - 14:00 集中走完 6 家,室內冷氣足。順序依據開店時間:<strong>BAL 11:00</strong> → <strong>Kindal</strong> → <strong>Flamingo 12:00</strong> → <strong>NeeD</strong> → <strong>SAVI</strong> → <strong>Decouverte</strong>。Michael 在民宿工作</div>
+          </div>
+        </li>
+        <li class="timeline-item has-res">
+          <div class="timeline-time">14:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">400 Kyoto · 柴火燒披薩
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">Michael 來會合 · 市中心 · 室內冷氣 · 訂位費已付</div>
+          </div>
+        </li>
+        <li class="timeline-item has-res">
+          <div class="timeline-time">16:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">Gion Theater · 藝妓 / 舞妓表演
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">1 小時 · 17:00 結束 · 室內冷氣 · 距民宿步行 5 分鐘 · Klook 預訂 HK$2,580</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">17—19</div>
+          <div class="timeline-content">
+            <div class="timeline-title">京都百貨補完
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span></span>
+            </div>
+            <div class="timeline-desc">Michael 返民宿續工作 · Joyce, Zoe, Hugo 補完上午未走完店 或 直接逛百貨:<strong>高島屋京都店</strong>、<strong>大丸京都店</strong>(四条河原町,10:00 - 20:00)、<strong>藤井大丸</strong>(10:30 - 20:00)、<strong>京都伊勢丹</strong>(京都站,10:00 - 20:00)。冷氣足、可購買日本品牌與京都銘菓伴手禮</div>
+          </div>
+        </li>
+        <li class="timeline-item has-res">
+          <div class="timeline-time">19:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">米處いなもと
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">4 人匯合 · 以米飯為主題的晚餐 · 訂位費已付</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">21:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">FUREK LAB0 · 雞尾酒
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">東山區鐘鋳町 352 · 以京都地下水(自挖水井)調製雞尾酒的特色酒吧 · 招牌「Nishiki 錦」配高湯橄欖 · 民宿步行 10 分鐘</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="tier2">
+        <div class="tier2-label">6 家 Vintage 詳情</div>
+        <ul class="tier2-list">
+          <li><strong>Kyoto BAL</strong> · 河原町通三条下ル山崎町 251 · 11:00 - 20:00</li>
+          <li><strong>Flamingo 京都店</strong> · 新京極六角下ル中筋町 490 B1F · 平日 12:00 - 21:00</li>
+          <li><strong>NeeD</strong> · 中京區妙満寺前町 463(郵編 604-0932) · Joyce 收藏名單。出發前確認當日營業</li>
+          <li><strong>Kindal 京都店</strong> · 中京區円福寺前町 282(河原町駅步行 4 分) · 11:00 - 20:00 無休 · 中古設計師服飾、包、錶</li>
+          <li><strong>SAVI VINTAGE KYOTO</strong> · 中京區八百屋町 112-1 · 京町家空間 · HERMES、CHANEL 古董包與配飾為主 · 出發前 Instagram @savi.kyoto 確認</li>
+          <li><strong>Decouverte 京都店</strong> · 下京區貞安前之町 609 飯田屋ビル 1F · BAYCREW'S 旗下高端 vintage(LV、CHANEL、HERMES、Gucci)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DAY 4 ============ -->
+<section id="day-4">
+  <div class="wrap">
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num">Day Four · 5.26</div>
+        <h3 class="day-title">Kinkaku-ji <em>&amp;</em> Arashiyama</h3>
+        <div class="day-cjk">金閣寺 4 人 · Hugo 道別 · 嵐山 + 東寺 3 人</div>
+        <div class="day-status-row">
+          <div class="day-companions">
+            <span class="who-n joyce">Joyce</span>
+            <span class="who-n zoe">Zoe</span>
+            <span class="who-n hugo">Hugo</span>
+            <span class="who-n michael">Michael</span>
+          </div>
+          <div class="day-weather">28° / 20°</div>
+        </div>
+      </div>
+
+      <div class="note">
+        <span class="note-label">Hugo 離開</span>Hugo 須於 14:00 前出發 · 金閣寺後道別 · 嵐山由 Joyce, Zoe, Michael 3 人繼續
+      </div>
+
+      <ul class="timeline">
+        <li class="timeline-item">
+          <div class="timeline-time">08:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">民宿出 → 金閣寺</div>
+            <div class="timeline-desc">的士 ¥2,500 - 3,500 / 25 - 30 分鐘。9:00 開門</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">09:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">金閣寺 · 鹿苑寺
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">9:00 - 10:15 繞鏡湖池一圈 · 不同角度拍金閣倒影 · 出口抹茶亭可休</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">10:15</div>
+          <div class="timeline-content">
+            <div class="timeline-title">Hugo 道別 · 3 人金閣 → 嵐山
+              <span class="timeline-who"><span class="who-n hugo absent">Hugo</span></span>
+            </div>
+            <div class="timeline-desc">Hugo 此時離開(須 14:00 前出發)· Joyce, Zoe, Michael 的士 ~¥3,000 繼續嵐山</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">10:45</div>
+          <div class="timeline-content">
+            <div class="timeline-title">嵐山 · 竹林 + 渡月橋
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">竹林の道(慢走拍照 30 - 40 分鐘)→ 渡月橋眺保津川 → 嵯峨野通伴手禮</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">12:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">嵐山午餐</div>
+            <div class="timeline-desc">嵯峨豆腐稻 · 嵐山よしむら(蕎麥)· 老松(和菓子茶屋)</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">14:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">返민宿 / 往東寺</div>
+            <div class="timeline-desc">嵐電 / JR / 的士 ~30 分鐘回民宿，或直接從嵐山的士到東寺(~¥4,000 / 40 分鐘)。時間充裕的話可先回民宿放行李再出</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">PM</div>
+          <div class="timeline-content">
+            <div class="timeline-title">東寺 · 五重塔
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">下午到東寺時間彈性(17:00 關門,最終入場 16:30)。日本最高木造塔 55 公尺 · 講堂立體曼荼羅(空海所設 21 尊密教佛像)· 金堂 · 五重塔。從民宿的士 ~¥1,500 / 15 分鐘</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">18:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">晚餐
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">未訂位 · 3 人 · 祇園或先斗町隨機入店</div>
+          </div>
+        </li>
+
+      </ul>
+
+      <div class="tier2">
+        <div class="tier2-label">Tier 2 · 嵐山可加入</div>
+        <ul class="tier2-list">
+          <li><strong>嵐山小火車 嵯峨野</strong> · 龜岡來回 ~1 小時,風景線路。需提前預約</li>
+          <li><strong>大覚寺</strong> · 嵯峨深處,大澤池四季美</li>
+          <li><strong>祇王寺</strong> · 嵐山西側,平家物語題材,苔庭精緻</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DAY 5 ============ -->
+<section id="day-5">
+  <div class="wrap">
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num">Day Five · 5.27</div>
+        <h3 class="day-title">Split Day <em>·</em> Miho &amp; Kenninji</h3>
+        <div class="day-cjk">分組日 · Michael 美秀 · 清水寺 + 東山 + 建仁寺(Joyce, Zoe)</div>
+        <div class="day-status-row">
+          <div class="day-companions">
+            <span class="who-n joyce">Joyce</span>
+            <span class="who-n zoe">Zoe</span>
+            <span class="who-n hugo absent">Hugo</span>
+            <span class="who-n michael">Michael</span>
+          </div>
+          <div class="day-weather">25° / 19° · 涼爽舒適</div>
+        </div>
+      </div>
+
+      <ul class="timeline">
+        <li class="timeline-item">
+          <div class="timeline-time">07:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">清水寺 黎明時段
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span></span>
+            </div>
+            <div class="timeline-desc">06:00 開門 · 07:00 入寺人最少,靜謐完全不同。從民宿走松原通上山(Day 1 已走二寧坂三年坂,這次換路)約 12 分鐘。本堂清水舞台俯瞰京都朝光 · 地主神社 · 音羽の滝</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">08:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">Michael 出發美秀美術館
+              <span class="timeline-who"><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">京都站 → JR 石山駅 ~25 分。<strong>帝產巴士 150 號 3 號月台</strong>,每小時一班,~50 分。售票機購買「巴士 + 入場券」套票(現金或 IC 卡)。春季展期 2026/3/14 - 6/7,5/27 週三正常 10:00 - 17:00</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">09:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">二寧坂 → 東山エリア
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span></span>
+            </div>
+            <div class="timeline-desc">清水下山後走二寧坂三年坂 · 此時旅行團未至,石板路清靜。沿路逛八坂通 · ねねの道 · 高台寺周邊。咖啡可選八坂塔旁日東堂 2F KYOTO COFFEE 或宮川筋 Sentido。悠閒漫步至午餐前</div>
+          </div>
+        </li>
+        <li class="timeline-item has-res">
+          <div class="timeline-time">12:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">土井活鰻 · 祇園八坂(鰻魚飯)
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span></span>
+            </div>
+            <div class="timeline-desc">12:30 - 14:30 · 2 小時用餐 · 2 人(Michael 在美秀)· <strong>需向餐廳更新人數</strong></div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">14:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">建仁寺
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span></span>
+            </div>
+            <div class="timeline-desc">土井活鰻步行 5 分鐘。10:00 - 17:00 · 最終入場 16:30。京都最古禅寺之一(1202 年)· 俵屋宗達「風神雷神図屏風」(複製)· 法堂天井龍雲圖 · 枯山水庭園「大雄苑」· 兩足院有苔庭(不定期公開)</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">15:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">祇園エリア漫步
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span></span>
+            </div>
+            <div class="timeline-desc">花見小路 · 白川南通 · 巽橋 · 宮川筋一帶。此時段人潮正好,祇園町家 · 老舖看盡。可順路回民宿換裝</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">17:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">3 人匯合</div>
+            <div class="timeline-desc">Michael 從美秀 ~16:00 - 16:30 返京都 · 民宿匯合小休整裝</div>
+          </div>
+        </li>
+        <li class="timeline-item has-res">
+          <div class="timeline-time">19:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">KURO KYOTO
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">3 人</div>
+          </div>
+        </li>
+        <li class="timeline-item has-res">
+          <div class="timeline-time">22:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">Hideout KICK Kyoto · Speakeasy
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">〒605-0073 東山区祇園町北側 347-9 サンシステム祇園ソーシャルビル 2 階 D 號室 · 4.9 星 · ¥2,000 - 3,000 / 人 · 民宿步行 5 - 10 分鐘</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="tier2">
+        <div class="tier2-label">Tier 2 · 飯後備案</div>
+        <ul class="tier2-list">
+          <li><strong>先斗町酒吧街</strong> · 若 Hideout KICK 後仍想多喝,從民宿過鴨川即達</li>
+          <li><strong>鴨川河畔夜涼散步</strong> · 5 月夜溫 ~19°C 適合</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DAY 6 ============ -->
+<section id="day-6">
+  <div class="wrap">
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num">Day Six · 5.28</div>
+        <h3 class="day-title">Easy Departure</h3>
+        <div class="day-cjk">輕鬆收尾 · 離開 KIX</div>
+        <div class="day-status-row">
+          <div class="day-companions">
+            <span class="who-n joyce">Joyce</span>
+            <span class="who-n zoe">Zoe</span>
+            <span class="who-n hugo absent">Hugo</span>
+            <span class="who-n michael">Michael</span>
+          </div>
+          <div class="day-weather">24° / 19°</div>
+        </div>
+      </div>
+
+      <ul class="timeline">
+        <li class="timeline-item">
+          <div class="timeline-time">08:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">民宿早餐</div>
+            <div class="timeline-desc">附近 市川屋珈琲 5 分鐘步行,或民宿廚房自煮</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">10:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">硬性退房 ⚠</div>
+            <div class="timeline-desc">Karen 規定 10:00 必須退房 · 行李寄存或拖至京都站</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">11:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">Haruka → KIX</div>
+            <div class="timeline-desc">京都站 11:00 出發 · 12:15 抵 KIX(75 分鐘)</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">12:15</div>
+          <div class="timeline-content">
+            <div class="timeline-title">KIX 4 小時免稅店 + 慢餐</div>
+            <div class="timeline-desc"><strong>DFS</strong> · <strong>TIME&amp;STYLE</strong> · Pokemon Center · Royce · 北菓樓 · 慢慢挑、慢慢吃,享受不趕的最後一段</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">16:15</div>
+          <div class="timeline-content">
+            <div class="timeline-title">起飛回港</div>
+            <div class="timeline-desc">3 人同班機</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CULTURE TAB ============ -->
+<section id="culture">
+  <div class="wrap">
+    <div class="section-eyebrow">Cultural notes</div>
+    <h2 class="section-heading">文化 <em>淵源</em></h2>
+    <p class="section-sub">各景點的歷史背景 · 重點看頭 · 文化意義 · 點擊原文連結深讀</p>
+
+    <div class="culture-intro">
+      京都行程橫跨千年:<strong>平安初期</strong>(8 - 12 世紀,清水寺、東寺、二寧坂三年坂的起源)、<strong>院政及鎌倉時代</strong>(12 - 13 世紀,寂光院、寶泉院、建仁寺)、<strong>室町北山文化</strong>(14 世紀,金閣寺)再到<strong>江戶 - 當代</strong>(嵐山町並、現代重建)。下列依參觀順序排列,每段附原文出處。
+    </div>
+
+    <!-- 1 二寧坂三年坂 ねねの道 -->
+    <div class="culture-card">
+      <div class="cc-head">
+        <div class="cc-day">Day 1 · 5.23 — 黃昏散步</div>
+        <div class="cc-name">二寧坂 · 三年坂 · ねねの道</div>
+        <div class="cc-romaji">Ninen-zaka · Sannen-zaka · Nene-no-michi</div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">名稱由來</div>
+        <div class="cc-text">三年坂的正式名稱為<em>產寧坂(さんねいざか)</em>,「產」即「生」、「寧」即「安」,合稱「安產」之意。此坂為通往昔日清水寺旁<em>泰產寺子安塔</em>(現清水寺子安塔之前身)的參拜道,平安、鎌倉以來為祈求順產的女性必經之路。一說坂於<strong>大同三年(808 年)</strong>整備而得「三年坂」之名;另一說由「產寧」訛轉為「三年」。二寧坂則於<strong>大同二年(807 年)</strong>整備,位置在三年坂下方,因此而名。「跌倒兩年/三年內亡」之古諺實為提醒石階濕滑、應步步留心的警語。<a class="cc-source" href="https://www.kyotonikanpai.com/spot/02_01_gion_higashiyama/sanneizaka.php" target="_blank" rel="noopener">京都に乾杯 · 三年坂</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">町並 · 重要傳統建造物群保存地區</div>
+        <div class="cc-text">兩坂的町並於<strong>大正初期(1910 年代)</strong>定型,沿石板路兩側為京町家建築:<em>焼杉板</em>外壁、瓦屋頂、<em>蟲籠窗(むしこ窓)</em>與<em>犬矢來(いぬやらい)</em>(防犬撒尿的弧形竹柵)。1976 年,二寧坂、三年坂周邊獲日本國指定為<strong>「重要傳統建造物群保存地區」</strong>,是京都最早一批受保護的歷史街區之一。畫家詩人<strong>竹久夢二</strong>於 1917 年(大正六年)曾在此寓居約兩個月,其舊居跡仍有石碑可尋,亦反映此區為大正浪漫時期文人雅集之地。<a class="cc-source" href="https://kyoto-design.jp/spot/2900" target="_blank" rel="noopener">京都觀光情報 · 二寧坂</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">ねねの道 · 北政所故事</div>
+        <div class="cc-text"><strong>豐臣秀吉</strong>於慶長三年(1598)歿後,其正室<strong>北政所ねね(高台院)</strong>於慶長十一年(1606)在東山興建<em>高台寺</em>,作為亡夫菩提寺,並於此度過後半生(歿於 1624 年,享年 77)。「ねねの道」即指高台寺通往清水寺一帶的石板路,相傳ねね常經此道至清水祈福。一說產寧坂的「安產」傳說亦與北政所相關,雖無嗣,卻為求豐臣家後繼而頻繁參拜子安觀音。沿線今日仍可見高台寺、圓德院(ねね晚年居所)、八坂塔(法觀寺)等與安土桃山時代密切關聯的史蹟。<a class="cc-source" href="https://busho-heart.jp/archives/8887" target="_blank" rel="noopener">武將愛 · 二年坂三年坂與ねね</a></div>
+      </div>
+    </div>
+
+    <!-- 2 三千院 -->
+    <div class="culture-card">
+      <div class="cc-head">
+        <div class="cc-day">Day 2 · 5.24 — 大原山里</div>
+        <div class="cc-name">三千院</div>
+        <div class="cc-romaji">Sanzen-in · Tendai 門跡 Temple</div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">歷史沿革</div>
+        <div class="cc-text">三千院為<strong>天台宗五門跡</strong>(由皇族 / 攝家出身者住持的寺院)之一,在五門跡中歷史最古。起源可追溯至<strong>最澄(傳教大師,767 - 822)</strong>於延曆年間(782 - 806)開創比叡山延曆寺時,於東塔南谷梨樹下所建之「圓融房」,故初代別號「梨本門跡」。歷經多次遷移,曾稱「梶井門跡」、「梶井御所」、「圓德院」等名,於<strong>明治四年(1871)</strong>定址於現址大原,並改稱「三千院」。大原自古即為<strong>慈覺大師圓仁</strong>(794 - 864,最澄弟子,曾赴唐求法)開創<em>天台聲明(佛教聲樂)</em>的根本道場,亦為念佛行者隱修之地,歷代培育出良忍上人等聲明大家。<a class="cc-source" href="https://ja.wikipedia.org/wiki/三千院" target="_blank" rel="noopener">Wikipedia · 三千院</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">最重要看頭 · 往生極樂院</div>
+        <div class="cc-text">三千院南庭內<em>往生極樂院</em>建於<strong>寬和二年(986)</strong>,由<strong>恵心僧都源信(942 - 1017)</strong>為亡父母菩提所建,與其姊安養尼合作。源信為《往生要集》(985)作者,日本淨土思想奠基者,其「南無阿彌陀仏」念佛行法影響後世法然、親鸞。此堂原為「常行三昧」修行堂——僧人繞阿彌陀如來像反覆稱名,以期極樂往生。內部天井為<strong>日本現存最古之「船底天井」</strong>(山形板張),原繪平安藤原時代極彩色極樂淨土圖,類似平等院鳳凰堂內裝,惜現多剝落褪色。明治後三千院遷至此地,將往生極樂院併入境內,2006 年建「圓融蔵」於本院,以原寸復原船底天井及天井畫。<a class="cc-source" href="https://totteoki.kyoto.travel/16972/" target="_blank" rel="noopener">とっておきの京都 · 往生極樂院</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">國寶 · 阿彌陀三尊坐像(久安四年/1148)</div>
+        <div class="cc-text">堂內供奉<strong>國寶阿彌陀三尊像</strong>(2002 年指定):中央<em>阿彌陀如來</em>結來迎印,坐於蓮台上;左右脇侍<em>觀世音菩薩</em>奉蓮台、<em>勢至菩薩</em>合掌。兩脇侍均採極為罕見的「<em>大和坐(やまとざり)</em>」——膝部微開、上身前傾、雙腿跪坐的姿勢,正欲起身迎接臨終往生者前赴極樂。此瞬間性的姿態,完美呼應源信《往生要集》「臨終來迎」思想。勢至菩薩體內墨書記載<strong>久安四年(1148)</strong>製作,為平安後期木造寄木造、漆箔工藝代表作,阿彌陀如來像高 232 公分,觀音 132 公分、勢至 133 公分。<a class="cc-source" href="https://www.sanzenin.or.jp/guide/heritage.html" target="_blank" rel="noopener">三千院官方 · 文化財</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">庭園 · 聚碧園與有清園</div>
+        <div class="cc-text">境內兩座國指定名勝庭園:<em>聚碧園</em>位於客殿前,池泉觀賞式,傳為<strong>金森宗和(1584 - 1657,江戶初期茶人)</strong>所作,以四季變化的櫻、苔、紅葉、雪景見長,可於客殿榻榻米上靜坐眺賞。<em>有清園</em>位於宸殿南、往生極樂院四周,為<strong>池泉迴遊式庭園</strong>,以杉、檜、楓樹高聳並立,地表全覆<em>苔(蘚類)</em>,日本最古的苔庭代表之一。大原山中濕度高、日照斜緩,造就此地獨有的鬱綠靜謐感,被譽為「京都最美苔庭」之一。<a class="cc-source" href="https://www.kyoto-museums.jp/museum/north/937/" target="_blank" rel="noopener">京都ミュージアム · 三千院</a></div>
+      </div>
+    </div>
+
+    <!-- 3 寶泉院 -->
+    <div class="culture-card">
+      <div class="cc-head">
+        <div class="cc-day">Day 2 · 5.24 — 大原山里</div>
+        <div class="cc-name">寶泉院</div>
+        <div class="cc-romaji">Hōsen-in · Frame Garden</div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">沿革 · 聲明發祥地</div>
+        <div class="cc-text">寶泉院為<em>勝林院</em>的塔頭(子寺),於<strong>長和二年(1012 年)</strong>創建,與隔鄰<em>實光院</em>同為勝林院僧侶居住的「僧坊」。勝林院則由<strong>寂源上人</strong>於 1013 年所建,是<strong>天台聲明(佛教聲樂)</strong>的根本道場——聲明為印度梵唄經中國傳入日本後,於大原確立的佛教音樂體系,被視為日本古典聲樂的源流之一。<strong>聖應大師良忍(1073 - 1132)</strong>於此集大成「魚山聲明」,將漢、唐、宋諸調統合,亦影響後世能樂、雅樂。寶泉院本尊為阿彌陀如來,另祀觀音、勢至菩薩。<a class="cc-source" href="https://kyoto-ohara-kankouhosyoukai.net/detail/5524/" target="_blank" rel="noopener">大原觀光保勝會 · 寶泉院</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">名物 · 額緣庭園「盤桓園」</div>
+        <div class="cc-text">客殿西側將柱與柱之間視為畫框,將窗外景色框成一幅活畫——此即<strong>「額緣(がくぶち)庭園」</strong>典型。庭名<em>「盤桓園」</em>取自陶淵明《歸去來辭》「景翳翳以將入,撫孤松而盤桓」一句,意為「徘徊不忍離去」,點出此庭令人駐足的魅力。庭中央立<strong>樹齡 700 餘年的五葉松</strong>(一說 500 年以上),樹形仿<em>近江富士(三上山)</em>山姿,經多代住職精心剪整,獲指定為京都市天然紀念物。訪者可於榻榻米上盤坐,品<strong>抹茶與和菓子</strong>(已含於拜觀料 1,000 円內),享受聲明吟誦作背景音的禪意時光。<a class="cc-source" href="https://kyoto-design.jp/spot/2839" target="_blank" rel="noopener">京都觀光 · 寶泉院盤桓園</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">血天井 · 伏見城遺構</div>
+        <div class="cc-text">書院走廊的天井來自<em>伏見城</em>遺構,板上至今仍可辨血手印與血足印,稱<strong>「血天井」</strong>。慶長五年(1600)<strong>關原之戰前哨戰</strong>:石田三成率西軍 40,000 攻德川家康委守伏見城的家臣<strong>鳥居元忠</strong>等 1,800 餘人,激戰 13 日後城陷,鳥居元忠及守軍 380 餘人於御殿走廊上自刃殉死,血漬深滲入殿板。江戶初期,該血板被分置京都多處寺院(寶泉院、源光庵、養源院、正傳寺等)作為天井,以資供養忠勇之魂——將之置於天井而非地板,意為「踏之為不敬」。<a class="cc-source" href="https://garden-guide.jp/spot.php?i=hosenin" target="_blank" rel="noopener">庭園ガイド · 寶泉院</a></div>
+      </div>
+    </div>
+
+    <!-- 4 寂光院 -->
+    <div class="culture-card">
+      <div class="cc-head">
+        <div class="cc-day">Day 2 · 5.24 — 大原山里</div>
+        <div class="cc-name">寂光院</div>
+        <div class="cc-romaji">Jakkō-in · The Heike Story</div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">創建 · 聖德太子</div>
+        <div class="cc-text">寂光院為<strong>天台宗尼寺</strong>,寺號玉泉寺。相傳由<strong>聖德太子(574 - 622)</strong>於<strong>推古二年(594)</strong>為其父用明天皇菩提所創,本尊原為地藏菩薩。立寺地點在大原寂靜深山中,自古即為念佛行者隱修之地,亦為高貴出家者的隱棲之所。三代住持俱為比丘尼:初代<em>玉照姫</em>(聖德太子乳母之女)、二代<em>阿波内侍</em>(藤原信西之女、後白河院近臣)、三代即<em>建禮門院德子</em>。<a class="cc-source" href="https://tabi-mag.jp/ky0506/" target="_blank" rel="noopener">旅マガジン · 寂光院</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">建禮門院德子 · 平家之女</div>
+        <div class="cc-text"><strong>建禮門院平德子(1155 - 1213?)</strong>為<em>平清盛之女</em>、<em>高倉天皇皇后</em>、<em>安德天皇生母</em>。承安元年(1171)入宮,治承二年(1178)誕安德天皇,平家權勢達於頂點,「平氏ニアラズンバ人ニアラズ」之語盛行。1180 年源賴朝起兵,1183 年平家西走,1184 年一之谷、屋島連敗。<strong>文治元年(1185)三月二十四日壇之浦之戰</strong>,平家覆滅:祖母<em>二位尼</em>抱六歲安德天皇投海,清盛子嗣多數戰歿或自刃;德子亦投海,卻被源氏軍以熊手撈起,獨存於世。返京後於長樂寺出家,法號<em>真如覚比丘尼</em>,投靠寂光院二代住持阿波内侍而隱居,後成第三代住持。<a class="cc-source" href="https://ja.wikipedia.org/wiki/寂光院" target="_blank" rel="noopener">Wikipedia · 寂光院</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">大原御幸 · 《平家物語》終章「諸行無常」</div>
+        <div class="cc-text"><strong>文治二年(1186)四月,後白河法皇</strong>(已復辟掌院政,與源頼朝對峙)親往大原訪德子,此即《平家物語》灌頂卷之「<strong>大原御幸</strong>」名場面。法皇至時德子正花摘未歸,歸後與法皇對面,訴說平家由盛轉衰始末、壇之浦最期、六道輪迴所見——平家武運=畜生道、政爭=阿修羅道、滅亡=地獄道。此一篇章為《平家物語》全書尾聲,集中體現開卷名句「<em>祇園精舍之鐘聲,有諸行無常之響;娑羅雙樹之花色,顯盛者必衰之理</em>」之主題。德子在寂光院度約 28 年,於建保元年(1213)歿,享年 58,陵墓<em>「大原西陵」</em>即在境內。<a class="cc-source" href="https://kyoto-ohara-kankouhosyoukai.net/detail/5600/" target="_blank" rel="noopener">大原觀光保勝會 · 寂光院</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">本尊 · 六萬體地藏菩薩(2000 年縱火事件)</div>
+        <div class="cc-text">舊本尊<em>六萬體地藏菩薩立像</em>(平安後期作,重要文化財)高 2.56 米,其名因像周圍棚架供 3 萬尊小地藏、像內胎內藏 3 萬尊,合計 6 萬尊而來。<strong>2000 年 5 月 9 日凌晨</strong>本堂遭縱火(犯人未定),火災中舊本尊嚴重燒損(後修復收於收納庫,定期公開)。現本堂為<strong>2005 年</strong>依江戶舊樣重建,本尊為依據舊像精確復刻之新像(以檜木寄木造、岩繪具彩色,完全模仿創建當時的拝顏姿態)。境內<em>「汀の桜」</em>為法皇御幸時所詠之櫻、<em>千年姫小松</em>(2000 年火災中枯死,殘株猶存以注連繩鎮座)等史蹟皆與《平家物語》直接連結。<a class="cc-source" href="https://favoriteslibrary-castletour.com/kyoto-jakkoin-sanzenin/" target="_blank" rel="noopener">京都大原 · 建禮門院ゆかり</a></div>
+      </div>
+    </div>
+
+    <!-- 5 金閣寺 -->
+    <div class="culture-card">
+      <div class="cc-head">
+        <div class="cc-day">Day 4 · 5.26 — 早晨</div>
+        <div class="cc-name">金閣寺(鹿苑寺)</div>
+        <div class="cc-romaji">Kinkaku-ji · Rokuon-ji</div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">義満與北山殿(1397 年)</div>
+        <div class="cc-text">正式名<em>鹿苑寺</em>,屬<strong>臨濟宗相國寺派</strong>。<strong>應永四年(1397)</strong>由室町幕府第三代將軍<strong>足利義満(1358 - 1408)</strong>於原西園寺家別業「北山第」遺址興建退隱別墅「<em>北山殿</em>」,作為其退任將軍後的政治與宗教中心。義満為室町幕府史上最強勢的將軍:統一南北朝(1392)、設立日明勘合貿易(1401)、自稱「日本國王」,文化上開創<strong>北山文化</strong>——融合公家(平安貴族)、武家(鎌倉武士)、禪宗三種傳統美學的時代風格,亦庇護觀阿彌、世阿彌父子奠定能樂。<strong>應永十五年(1408)</strong>義満歿後,依其遺命將北山殿改為禪寺,寺號取義満法名「鹿苑院殿」之「鹿苑」。1994 年列入<strong>聯合國世界遺產</strong>「古都京都的文化財」。<a class="cc-source" href="https://www.japan-guide.com/e/e3908.html" target="_blank" rel="noopener">Japan-Guide · Kinkakuji</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">舍利殿 · 三層樣式融合</div>
+        <div class="cc-text">園中央<em>舍利殿(金閣)</em>三層樓閣建築,各層風格迥異卻和諧融會,反映北山文化精神:<br>・<strong>一層 法水院</strong>(寝殿造)— 平安公家貴族住宅式,白漆喰壁、木格子窗、不貼金箔。內供釋迦如來與義満坐像,從鏡湖池對岸可窺見。<br>・<strong>二層 潮音洞</strong>(武家造)— 鎌倉武士住宅式,外牆全貼金箔。內供岩屋觀音菩薩及四天王立像(不對外公開)。<br>・<strong>三層 究竟頂</strong>(禪宗仏殿造)— 中國禪院樣式,內外全貼純金箔。圓窗造型仿宋禪寺,內供阿彌陀如來及二十五菩薩,為仏舍利安置處。<br>屋頂頂端立<strong>金色鳳凰</strong>(中國神鳥,象徵祥瑞與重生),亦暗喻義満本人。整體建築與鏡湖池、葦原島、龜島、鶴島構成<em>淨土式庭園</em>,表現「此世現極樂淨土」之意象。<a class="cc-source" href="https://shrinesandtemples.com/1260/" target="_blank" rel="noopener">Shrines & Temples · Kinkaku-ji</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">鏡湖池 · 逆さ金閣</div>
+        <div class="cc-text">舍利殿臨<em>鏡湖池(きょうこち)</em>而建,池面廣 2,000 平方米,布有大小十餘個小島與九處名石(細川石、畠山石、赤松石等,皆為室町諸大名所獻)。風靜時,金閣完整倒映於水面,即著名的<em>「逆さ金閣(さかさきんかく)」</em>。庭園整體為<strong>義満親自設計</strong>,參考宋元山水畫意境,融合<em>觀想式淨土庭園</em>(西方極樂)與<em>池泉迴遊式</em>(可步行繞遊)兩種傳統,被視為室町初期庭園代表作。1994 年連同建築一同列入世界遺產。<a class="cc-source" href="https://japancitytour.com/kinkakuji/" target="_blank" rel="noopener">Japan City Tour · Kinkakuji</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">1950 年焚毀事件 · 三島由紀夫</div>
+        <div class="cc-text"><strong>1950 年 7 月 2 日</strong>凌晨,當時於鹿苑寺修行的 21 歲見習僧<strong>林養賢</strong>放火,將原始舍利殿(室町時代遺構)及義満坐像全部燒毀。林後企圖自殺未遂,被捕後判刑 7 年,因肺結核及精神狀態惡化於 1956 年 3 月歿;其母於兒子被捕後不久投水自盡。事件震驚日本,被視為與 1949 年法隆寺金堂壁畫火災同等嚴重。現存建築為<strong>1955 年</strong>依舊樣重建,金箔重貼;1987 年再次全面更換金箔(較原作更厚),內部復原。文豪<strong>三島由紀夫</strong>以此事件為原型,寫成名作《<em>金閣寺</em>》(1956 年新潮社出版),透過縱火犯主人公的內心獨白,探討美的絕對性與人對之的嫉妬、欲望與自毀傾向。水上勉亦於 1979 年寫《金閣炎上》紀實作品。<a class="cc-source" href="https://en.wikipedia.org/wiki/Kinkaku-ji_arson" target="_blank" rel="noopener">Wikipedia · Kinkaku-ji arson</a></div>
+      </div>
+    </div>
+
+    <!-- 6 嵐山竹林 + 渡月橋 -->
+    <div class="culture-card">
+      <div class="cc-head">
+        <div class="cc-day">Day 4 · 5.26 — 上午</div>
+        <div class="cc-name">嵐山 · 竹林の小径 · 渡月橋</div>
+        <div class="cc-romaji">Arashiyama · Bamboo Grove · Togetsukyō</div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">嵐山地名與平安貴族</div>
+        <div class="cc-text">「嵐山」為桂川(大堰川)西岸的山名(海拔 382m),自<strong>平安時代</strong>初期即為皇族貴族避暑、賞月、賞紅葉之別業地。《古今和歌集》、《新古今和歌集》等敕撰和歌集中,嵐山與桂川皆為著名<em>歌枕(歌詠名所)</em>。<strong>嵯峨天皇(786 - 842)</strong>晚年退隱於此一帶,於後嵯峨天皇時期(1230 年代)又於嵐山一帶建龜山殿。中世以後,<em>夢窓疎石(1275 - 1351)</em>於 1339 年受足利尊氏邀請,於後嵯峨天皇龜山殿舊址創建<strong>天龍寺</strong>,以悼念後醍醐天皇,使嵐山一帶成為禪宗重要據點。江戶以後成為京都市民賞櫻賞楓的庶民遊樂地,日本電影黃金期(1920 - 50 年代)亦多在此一帶取景。<a class="cc-source" href="https://ja.kyoto.travel/tourism/single01.php?category_id=8&tourism_id=2682" target="_blank" rel="noopener">京都觀光協會 · 嵐山</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">竹林の小径</div>
+        <div class="cc-text"><em>竹林の小径(ちくりんのこみち)</em>自<em>野宮神社</em>起,沿天龍寺北側,延伸至<em>大河內山莊</em>入口,全長約 400 米,為京都最具國際辨識度的影像之一。竹種主要為<strong>孟宗竹(モウソウチク,中國江南原產)</strong>,單株可高達 25 米,亦混有日本原生<em>真竹(マダケ)</em>。孟宗竹一說於延曆 20 年(801)由僧侶自唐傳入,另說於安貞二年(1228);<strong>普及於江戶元文年間(1736 - 41)</strong>以後。竹林周邊每日 18 - 23 時點燈,夜間氛圍如夢;12 月並有「京都嵐山花燈路」特別點燈活動。野宮神社為昔日齋宮(派遣至伊勢神宮的未婚皇女)在赴任前淨身的場所,《源氏物語》第十帖「賢木」中六条御息所亦於此登場。<a class="cc-source" href="https://kanamari.net/explain-kyoto-arashiyama-in-english/" target="_blank" rel="noopener">KANAMARI · 嵐山與竹林</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">渡月橋 · 月渡橋上</div>
+        <div class="cc-text">桂川上的<em>渡月橋</em>長 155 米、寬 11 米,為嵐山地標。最初由<strong>弘法大師空海弟子道昌</strong>於<strong>承和年間(834 - 848)</strong>架設,原稱「法輪寺橋」,位置在現址上游約 100 米處,且為朱漆塗。鎌倉時代由<em>角倉了以(1554 - 1614,江戶初豪商,亦開鑿高瀨川)</em>移建至現址。橋名「渡月」來自<strong>龜山上皇(1249 - 1305)</strong>觀夜空中月亮緩緩橫越橋上空,詠歎曰「<em>くまなき月の渡るに似る</em>」(如月於無雲處渡過),遂得此名。現存橋體為<strong>昭和九年(1934)</strong>完工的鋼筋混凝土結構,但欄杆與橋面保留檜木傳統樣式,2001 年小幅修復。橋下大堰川自古即為運材道,亦為夏日<em>鵜飼(鵜鶘捕魚)</em>表演地。<a class="cc-source" href="https://ja.kyoto.travel/tourism/single01.php?category_id=8&tourism_id=2682" target="_blank" rel="noopener">京都觀光協會 · 渡月橋</a></div>
+      </div>
+    </div>
+
+    <!-- 7 東寺 -->
+    <div class="culture-card">
+      <div class="cc-head">
+        <div class="cc-day">Day 4 · 5.26 — 下午</div>
+        <div class="cc-name">東寺(教王護國寺)</div>
+        <div class="cc-romaji">Tō-ji · Kyō-ō-gokoku-ji</div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">創建 · 平安京之護法寺</div>
+        <div class="cc-text"><strong>延曆十五年(796)</strong>桓武天皇遷都平安京時,於<em>羅城門</em>(平安京正南大門)東西兩側建造的官寺,東側為<em>東寺</em>,西側為<em>西寺</em>(現已廢)。當時兩寺為京都唯二准許建造的佛寺,擔負護國家、王法、京都安寧之任,故全稱<em>「教王護國寺」</em>——「教王」即弘揚佛法之王道,「護國」即護持國家。<strong>弘仁十四年(823)</strong>嵯峨天皇將東寺賜予剛從唐朝歸國的<strong>弘法大師空海(774 - 835)</strong>,作為<em>真言密教</em>根本道場;西寺則賜予天台宗的最澄。此舉確立日本佛教「南都六宗」(奈良佛教)向「平安二宗」(天台、真言)轉型。1994 年列入世界遺產。<a class="cc-source" href="https://ja.wikipedia.org/wiki/東寺" target="_blank" rel="noopener">Wikipedia · 東寺</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">講堂立體曼荼羅 · 空海的密教視覺化</div>
+        <div class="cc-text">空海從唐朝<em>長安青龍寺惠果阿闍黎</em>處承繼真言密教後,於東寺講堂內設置<strong>21 尊佛像</strong>排列的<em>羯磨(かつま)曼荼羅</em>(又稱「立體曼荼羅」),將原本平面繪畫的曼荼羅<em>立體化</em>。此為空海個人構想之獨創:把抽象的密教宇宙觀<em>視覺化</em>,讓不識梵文經典的庶民也能直觀理解。21 尊佈局:<br>・中央須彌壇<strong>五智如來</strong>(大日如來居中,東阿閦、南寶生、西阿彌陀、北不空成就)<br>・東側<strong>五大菩薩</strong>(金剛波羅蜜為首)<br>・西側<strong>五大明王</strong>(不動明王為首,以忿怒相導難化者)<br>・四隅<strong>四天王</strong>+ 東西<strong>梵天 · 帝釋天</strong>(尤其<em>帝釋天騎象像</em>為著名「美男子佛像」)<br>承和六年(839)開眼供養,空海已於四年前(835)入定圓寂。15 尊為空海原作平安初期木造彩色像(國寶),6 尊為室町以後補製(重要文化財)。此曼荼羅被譽為<strong>日本密教彫刻最高傑作</strong>。<a class="cc-source" href="https://toji.or.jp/smp/mandala/" target="_blank" rel="noopener">東寺官方 · 立體曼荼羅</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">五重塔 · 日本最高木造塔</div>
+        <div class="cc-text">高<strong>54.8 米</strong>,為<em>日本現存最高的木造塔</em>,亦為京都最具辨識度的天際線地標。創建以來四度遭雷擊或兵火燒毀,現存塔為<strong>寬永二十一年(1644)</strong>德川幕府第三代將軍<strong>德川家光</strong>所寄進。塔內一樓安置<em>大日如來</em>(中心柱代表)及東西南北四方四佛(阿閦、寶生、阿彌陀、不空成就),柱壁繪有真言八祖像,亦為立體曼荼羅之延伸表現。塔身採用平安以來之傳統<em>「心柱免震構造」</em>:中心柱不承重,僅穿過五層,當地震發生時各層獨立晃動以耗散地震能量——此原理被現代<em>東京晴空塔(2012)</em>引為設計靈感。<a class="cc-source" href="https://intojapanwaraku.com/rock/art-rock/1706/" target="_blank" rel="noopener">和樂web · 東寺立體曼荼羅</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">不開門 · 1336 年足利尊氏典故</div>
+        <div class="cc-text">寺東門「<em>不開門(あけずのもん)</em>」之名來自<strong>建武三年(1336)</strong>南北朝動亂期的歷史事件。當時<em>足利尊氏</em>(後室町幕府初代將軍)與後醍醐天皇陣營<em>新田義貞 · 名和長年</em>之軍於東寺一帶激戰,尊氏退守東寺以此東大門為退路,最後一兵入內後即關門。新田軍以無數箭射門,門板至今仍可見矢痕,新田義貞挑戰一騎打,尊氏未開門以對。其後此門遂稱「不開門」,亦為東寺重要文化財。<a class="cc-source" href="https://kyoto.magazine7.net/toji/" target="_blank" rel="noopener">京都Magazine · 東寺</a></div>
+      </div>
+    </div>
+
+    <!-- 8 清水寺 -->
+    <div class="culture-card">
+      <div class="cc-head">
+        <div class="cc-day">Day 5 · 5.27 — 黎明</div>
+        <div class="cc-name">清水寺</div>
+        <div class="cc-romaji">Kiyomizu-dera</div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">創建縁起 · 賢心與行叡居士</div>
+        <div class="cc-text"><strong>寶龜九年(778)</strong>,奈良興福寺僧、後改名延鎮的<strong>賢心</strong>(法相宗),夢見北方有清泉之夢示,北上至<em>音羽山</em>(現清水寺地),發現一道金色水流。沿源溯尋,遇<em>行叡居士</em>(白衣修行者,200 歲)正於瀑布修行、念千手觀音。行叡言「吾待汝多年矣,今往東國,此地託付」,留下一塊聖木後隱去。賢心知行叡乃觀音化身,以該木雕刻千手觀音像,於音羽瀧畔結庵奉祀,此為清水寺起源。<a class="cc-source" href="https://ja.wikipedia.org/wiki/清水寺" target="_blank" rel="noopener">Wikipedia · 清水寺</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">坂上田村麻呂與本願</div>
+        <div class="cc-text"><strong>寶龜十一年(780)</strong>,武將<strong>坂上田村麻呂(758 - 811)</strong>為治妻高子之病,於音羽山獵鹿求生血為藥,與賢心相遇受感化,皈依觀音菩薩、戒殺生。<strong>延曆十七年(798)</strong>,田村麻呂(時任近衛中將)與延鎮合力大規模重修本堂,並造觀音脇侍<em>毘沙門天</em>與<em>地藏菩薩</em>像。田村麻呂後任<em>征夷大將軍</em>(797 - 811),征伐東北蝦夷立大功,東征前親至清水寺祈願凱旋。寺方將賢心、延鎮(同一人)、行叡、田村麻呂分別定位為<em>元祖</em>、<em>開山</em>、<em>本願</em>、<em>願主</em>。<strong>弘仁元年(810)</strong>嵯峨天皇敕賜「北觀音寺」寺號(後復稱清水寺),正式列為朝廷公認寺。1994 年列入世界遺產。<a class="cc-source" href="https://thegate12.com/jp/article/406" target="_blank" rel="noopener">THE GATE · 清水寺世界遺產</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">國寶本堂 · 清水舞台與懸造工法</div>
+        <div class="cc-text">本堂為<strong>國寶</strong>,檜皮葺、入母屋造,前方延伸出<em>清水の舞台</em>——離地面 13 米高(約 4 層樓),由<strong>樹齡 400 年以上的榉木 18 根大柱</strong>格狀組合支撐,完全不使用釘子,稱<em>「懸造(かけづくり) / 舞台造」</em>工法。此工法源自山岳寺院在懸崖建堂的需求,具高抗震性。歷史上清水寺遭遇 9 次焚毀,現存本堂為<strong>寬永十年(1633)德川家光寄進重建</strong>;2017 - 2020 年完成大規模屋頂葺替與舞台板更換工程。江戶時代有信徒「飛び降り」(從舞台跳下)許願之風氣(江戶幕府記錄共 234 件,生還率 85%),遂衍生成語<strong>「從清水舞台跳下」</strong>,意「下大決心拚一搏」。本堂祕仏為<em>十一面千手千眼觀音</em>(33 年開帳一次,下次 2033 年),為平安朝獨特造型「清水形觀音」,前面雙手高舉成佛阿彌陀印,為千手觀音造像史上稀例。<a class="cc-source" href="https://www.kiyomizudera.or.jp/map.php" target="_blank" rel="noopener">清水寺官方 · 境內巡遊</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">音羽の瀧 · 子安塔 · 地主神社</div>
+        <div class="cc-text">本堂下方<em>音羽の瀧</em>(寺名由來)從三股分流落下,信徒以杓子取一股飲,各代表<em>學業</em>、<em>戀愛</em>、<em>長壽</em>三願,擇一即可(貪心三股皆飲反失靈驗)。本堂北側<em>地主神社</em>(原為清水寺鎮守社,2022 - 修復閉鎖中)祭祀大國主命,以<em>「戀占の石」</em>聞名——閉眼從一石走至另一石(相距 10 米),若一次成功則戀愛將如願。本堂南側<em>子安塔</em>祭祀<em>子安觀音</em>(三年坂安產信仰之本尊),原塔安永八年(1779)再建,1911 年遷至現址。<strong>三重塔</strong>高 31 米,為日本最大級三重塔之一,鮮朱漆色與檜皮葺屋頂並列,為清水寺最具視覺辨識度之外觀。<a class="cc-source" href="https://www.veltra.com/jp/guide/domestic/spot-domestic/696/" target="_blank" rel="noopener">VELTRA · 清水寺見頭</a></div>
+      </div>
+    </div>
+
+    <!-- 9 建仁寺 -->
+    <div class="culture-card">
+      <div class="cc-head">
+        <div class="cc-day">Day 5 · 5.27 — 午後</div>
+        <div class="cc-name">建仁寺</div>
+        <div class="cc-romaji">Kennin-ji · Kyoto's Oldest Zen Temple</div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">栄西禪師 · 日本臨濟禪 + 茶祖</div>
+        <div class="cc-text"><strong>建仁二年(1202)</strong>,<strong>栄西禪師(1141 - 1215,ようさい / えいさい)</strong>受鎌倉幕府第二代將軍<strong>源頼家</strong>寄進寺域,於此創建建仁寺,模仿宋朝<em>百丈山伽藍布局</em>,寺號取創建當年年號。此為<em>京都最古之禪寺</em>,亦為日本臨濟宗發祥地之一(與博多<em>聖福寺</em>並稱)。栄西本為比叡山天台僧,卻不滿延曆寺世俗化,兩度入宋(1168 / 1187 - 1191),於宋天童山虚庵懐敞處嗣<em>臨濟宗黄龍派</em>法脈,歸國後將純正禪宗傳入日本。栄西同時將宋朝茶種帶回,植於<em>建仁寺</em>與<em>筑前背振山</em>,並著《<strong>喫茶養生記</strong>》(1211)獻將軍源實朝,記述茶之藥效與飲法,被尊為<em>日本茶祖</em>。建仁寺至室町時期列入<em>京都五山</em>第三位(天龍寺 · 相國寺 · 建仁寺 · 東福寺 · 萬壽寺),受幕府厚遇。<a class="cc-source" href="https://kyoto-stories.com/1_15_kenninji/" target="_blank" rel="noopener">京都の時空 · 建仁寺</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">國寶 · 風神雷神圖屏風(俵屋宗達)</div>
+        <div class="cc-text">寺寶之最為<strong>俵屋宗達</strong>(?- 1640 頃,琳派始祖)晚年最高傑作<em>《風神雷神圖屏風》</em>:二曲一双金地屏風,右双風神(綠膚、執風袋)、左双雷神(白膚、執連鼓)。背景金箔表「天空」,人物姿態飛動、富裝飾性,開創琳派<em>「自由背景金地裝飾畫」</em>典範。<strong>原作為國寶</strong>(現藏京都國立博物館),建仁寺所示為<em>高精細數位複製</em>(2013 年 Canon「綴 Project」製作),色彩鮮明、紋理逼真,可近距離拍攝。後代<em>尾形光琳</em>於享保年間摹此圖,再經<em>酒井抱一</em>繼承,構成琳派三代風神雷神系譜。此圖為日本美術史上最廣為人知的形象之一,亦影響後世葛飾北斎、Ghibli 等。<a class="cc-source" href="https://www.kenninji.jp/property/" target="_blank" rel="noopener">建仁寺官方 · 寺寶</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">法堂双龍圖 · 小泉淳作 2002</div>
+        <div class="cc-text">法堂(明和二年/1765 建,本尊釋迦如來與迦葉、阿難脇侍)天井畫<strong>《双龍圖》</strong>為現代水墨大師<strong>小泉淳作(1924 - 2012)</strong>於 2000 - 2002 年耗時 1 年 10 個月所繪,<em>畳 108 枚分</em>(約 175 平方米),為紀念<strong>建仁寺創建 800 周年</strong>而作。畫中阿吽兩龍(口開閉相對,代表呼吸與宇宙陰陽)守護佛法。禪宗法堂多繪龍,因龍為<em>水神</em>(以水鎮火災)、亦為<em>佛法守護神</em>(向僧人降下法雨)。本作為建仁寺自 1202 年創建以來首次有法堂天井畫,在此前一直為素木無畫狀態。<a class="cc-source" href="https://www.kenninji.jp/property/" target="_blank" rel="noopener">建仁寺官方 · 双龍圖</a></div>
+      </div>
+      <div class="cc-section">
+        <div class="cc-label">大雄苑 + ◯△▢之庭 + 兩足院</div>
+        <div class="cc-text">方丈(慶長四年/1599 年自安藝安國寺移築,重要文化財)前白砂枯山水<em>大雄苑(だいおうえん)</em>,由明治至昭和初期作庭家<strong>加藤熊吉(植熊)</strong>所作,寺名取宋百丈山別名「大雄山」,庭中 15 巨石以 7 - 5 - 3 配置,代表七寶、五大、三尊。本坊中庭<em>潮音庭</em>「四方正面」三尊石,任一方向觀皆呈正面;另有平成 18 年(2006)所作<em>◯△▢乃庭</em>,取江戶禪僧<strong>仙厓義梵(1750 - 1837)</strong>名作《◯△▢圖》為本,以禪宗四大思想<em>地(▢)水(◯)火(△)風</em>布陣為庭。塔頭<em>兩足院</em>以<em>苔庭 + 半夏生(夏至前後白葉變色)</em>聞名,5 - 7 月及 11 月特別公開期間可入內賞庭。<a class="cc-source" href="https://funjapo.com/sightseen/detail-78/" target="_blank" rel="noopener">FunJapo · 建仁寺</a></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ EXPENSE TAB ============ -->
+<section id="expense">
+  <div class="wrap">
+    <div class="section-eyebrow">Group expenses</div>
+    <h2 class="section-heading">分帳 <em>計算</em></h2>
+    <p class="section-sub">記錄共同消費 · 一鍵計算最簡結算</p>
+
+    <div class="expense-intro">
+      四人於此記入各自代墊的<strong>共同消費</strong>(個人消費請勿輸入)。結束時按 <strong>結算 Settle</strong>,系統將自動計算最少筆數的轉帳方案。資料儲存於本機瀏覽器,可<strong>匯出 JSON</strong> 分享他人。
+    </div>
+
+    <!-- Input Form -->
+    <div class="exp-form">
+      <div class="exp-form-title">新增支出 · New expense</div>
+
+      <div class="exp-field">
+        <label class="exp-field-label">日期 Date</label>
+        <input type="date" id="exp-date" value="">
+      </div>
+
+      <div class="exp-field">
+        <label class="exp-field-label">支出名稱 Description</label>
+        <input type="text" id="exp-name" placeholder="例如:大原的士、午餐 600 Pizza">
+      </div>
+
+      <div class="exp-field">
+        <label class="exp-field-label">金額(日圓 JPY)</label>
+        <input type="number" id="exp-amount" placeholder="0" min="0" step="1" inputmode="numeric">
+      </div>
+
+      <div class="exp-field">
+        <label class="exp-field-label">付款人 Paid by(單選)</label>
+        <select id="exp-paidby">
+          <option value="">-- 選擇 --</option>
+          <option value="Joyce">Joyce</option>
+          <option value="Zoe">Zoe</option>
+          <option value="Hugo">Hugo</option>
+          <option value="Michael">Michael</option>
+        </select>
+      </div>
+
+      <div class="exp-field">
+        <label class="exp-field-label">分擔人 Paid for(多選 · 按頭像勾選)</label>
+        <div class="exp-checks" id="exp-checks">
+          <label class="exp-check" data-person="Joyce">
+            <input type="checkbox" value="Joyce"><span>Joyce</span>
+          </label>
+          <label class="exp-check" data-person="Zoe">
+            <input type="checkbox" value="Zoe"><span>Zoe</span>
+          </label>
+          <label class="exp-check" data-person="Hugo">
+            <input type="checkbox" value="Hugo"><span>Hugo</span>
+          </label>
+          <label class="exp-check" data-person="Michael">
+            <input type="checkbox" value="Michael"><span>Michael</span>
+          </label>
+        </div>
+      </div>
+
+      <button class="exp-btn" id="exp-add">+ 新增 · Add expense</button>
+    </div>
+
+    <!-- Expense List -->
+    <div class="exp-list">
+      <div class="exp-list-header">
+        <div class="exp-list-title">已記錄 · <span id="exp-count">0</span> 項</div>
+        <div class="exp-total">總計 ¥<span id="exp-grand-total">0</span></div>
+      </div>
+      <div id="exp-rows">
+        <div class="exp-empty">尚未有紀錄 · 開始輸入第一筆支出</div>
+      </div>
+    </div>
+
+    <!-- HKD Conversion Rate -->
+    <div class="exp-form" style="margin-bottom: 14px;">
+      <div class="exp-form-title">匯率 · JPY → HKD</div>
+      <div class="exp-field" style="margin-bottom: 0;">
+        <label class="exp-field-label">¥1 = HK$ <span id="exp-rate-display" style="color:var(--seal);">0.0492</span></label>
+        <input type="number" id="exp-rate" value="0.0492" min="0" max="1" step="0.0001" inputmode="decimal">
+      </div>
+    </div>
+
+    <!-- Settlement Button -->
+    <button class="exp-btn" id="exp-settle">⚖ 結算 Settle</button>
+
+    <!-- Settlement Result -->
+    <div class="settle-box" id="settle-box" style="display:none;">
+      <div class="settle-title">結算結果 · Settlement</div>
+      <div id="settle-balances"></div>
+      <div class="transfers" id="settle-transfers"></div>
+    </div>
+
+    <!-- Import / Export -->
+    <div class="exp-actions">
+      <button class="exp-btn exp-btn-secondary" id="exp-export">⇣ 匯出 JSON</button>
+      <button class="exp-btn exp-btn-secondary" id="exp-import">⇡ 匯入 JSON</button>
+    </div>
+
+    <input type="file" id="exp-import-file" accept=".json" style="display:none;">
+  </div>
+</section>
+
+<div class="ornament">· · ·</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">京都 · 二〇二六年五月</div>
+    <div class="footer-meta">Kyoto · MMXXVI · v22</div>
+  </div>
+</footer>
+
+<script>
+  // ============================================================
+  // EXPENSE TRACKER
+  // ============================================================
+  const STORAGE_KEY = 'kyoto-expenses';
+  const PEOPLE = ['Joyce', 'Zoe', 'Hugo', 'Michael'];
+  const PERSON_CLASSES = { Joyce: 'joyce', Zoe: 'zoe', Hugo: 'hugo', Michael: 'michael' };
+
+  let expenses = [];
+
+  // Load from localStorage
+  function loadExpenses() {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      expenses = stored ? JSON.parse(stored) : [];
+    } catch (e) {
+      console.error('Load failed:', e);
+      expenses = [];
+    }
+  }
+
+  function saveExpenses() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses));
+    } catch (e) {
+      console.error('Save failed:', e);
+      alert('儲存失敗 · 瀏覽器空間不足');
+    }
+  }
+
+  // Format JPY
+  function fmt(n) {
+    return Math.round(n).toLocaleString('en-US');
+  }
+
+  // Render a person name pill
+  function pill(name, extraClass = '') {
+    const cls = PERSON_CLASSES[name] || '';
+    return `<span class="who-n ${cls} ${extraClass}">${name}</span>`;
+  }
+
+  // Multi-select checkbox interaction — visual feedback when checked
+  document.querySelectorAll('.exp-check').forEach(label => {
+    const input = label.querySelector('input');
+    const person = label.dataset.person;
+    const cls = PERSON_CLASSES[person];
+
+    input.addEventListener('change', () => {
+      if (input.checked) {
+        label.classList.add('checked', cls);
+      } else {
+        label.classList.remove('checked', cls);
+      }
+    });
+  });
+
+  // Default date input to today
+  function setDefaultDate() {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    document.getElementById('exp-date').value = `${yyyy}-${mm}-${dd}`;
+  }
+
+  // Add expense
+  document.getElementById('exp-add').addEventListener('click', () => {
+    const date = document.getElementById('exp-date').value;
+    const name = document.getElementById('exp-name').value.trim();
+    const amount = parseFloat(document.getElementById('exp-amount').value);
+    const paidBy = document.getElementById('exp-paidby').value;
+    const paidFor = Array.from(document.querySelectorAll('#exp-checks input:checked')).map(i => i.value);
+
+    if (!date) { alert('請選擇日期'); return; }
+    if (!name) { alert('請輸入支出名稱'); return; }
+    if (!amount || amount <= 0) { alert('請輸入金額'); return; }
+    if (!paidBy) { alert('請選擇付款人'); return; }
+    if (paidFor.length === 0) { alert('請選擇至少一位分擔人'); return; }
+
+    expenses.push({
+      id: Date.now() + '-' + Math.random().toString(36).slice(2, 7),
+      date, name, amount, paidBy, paidFor
+    });
+
+    saveExpenses();
+    render();
+
+    // Reset form fields (but keep date)
+    document.getElementById('exp-name').value = '';
+    document.getElementById('exp-amount').value = '';
+    document.getElementById('exp-paidby').value = '';
+    document.querySelectorAll('#exp-checks input').forEach(i => {
+      i.checked = false;
+      const lbl = i.closest('.exp-check');
+      lbl.classList.remove('checked', 'joyce', 'zoe', 'hugo', 'michael');
+    });
+    document.getElementById('exp-name').focus();
+
+    // Hide stale settle box
+    document.getElementById('settle-box').style.display = 'none';
+  });
+
+  // Delete expense
+  function deleteExpense(id) {
+    if (!confirm('確定刪除這筆支出?')) return;
+    expenses = expenses.filter(e => e.id !== id);
+    saveExpenses();
+    render();
+    document.getElementById('settle-box').style.display = 'none';
+  }
+  window.deleteExpense = deleteExpense;
+
+  // Render list
+  function render() {
+    const rowsEl = document.getElementById('exp-rows');
+    const countEl = document.getElementById('exp-count');
+    const totalEl = document.getElementById('exp-grand-total');
+
+    countEl.textContent = expenses.length;
+    const total = expenses.reduce((s, e) => s + e.amount, 0);
+    totalEl.textContent = fmt(total);
+
+    if (expenses.length === 0) {
+      rowsEl.innerHTML = '<div class="exp-empty">尚未有紀錄 · 開始輸入第一筆支出</div>';
+      return;
+    }
+
+    // Sort newest first
+    const sorted = [...expenses].sort((a, b) => {
+      if (a.date !== b.date) return b.date.localeCompare(a.date);
+      return b.id.localeCompare(a.id);
+    });
+
+    rowsEl.innerHTML = sorted.map(e => `
+      <div class="exp-row">
+        <div class="exp-row-top">
+          <div class="exp-row-name">${escapeHtml(e.name)}</div>
+          <div class="exp-row-amount">¥${fmt(e.amount)}</div>
+        </div>
+        <div class="exp-row-meta">
+          <span class="exp-row-date">${e.date.slice(5).replace('-', '/')}</span>
+          <span class="exp-row-paid">
+            <span class="exp-row-paid-label">付:</span>${pill(e.paidBy)}
+          </span>
+          <span class="exp-row-for">
+            <span class="exp-row-paid-label">分:</span>${e.paidFor.map(p => pill(p)).join('')}
+          </span>
+          <button class="exp-row-delete" onclick="deleteExpense('${e.id}')">✕</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+  }
+
+  // ============================================================
+  // SETTLEMENT — calculate net balance + greedy min-transaction
+  // ============================================================
+  function calculateBalances() {
+    const balance = {};
+    PEOPLE.forEach(p => balance[p] = 0);
+
+    expenses.forEach(e => {
+      const share = e.amount / e.paidFor.length;
+      balance[e.paidBy] += e.amount;
+      e.paidFor.forEach(p => balance[p] -= share);
+    });
+
+    return balance;
+  }
+
+  // Greedy algorithm: match largest creditor with largest debtor repeatedly
+  function settleTransfers(balance) {
+    const creditors = [];
+    const debtors = [];
+
+    Object.entries(balance).forEach(([name, amt]) => {
+      // Round to nearest yen to avoid floating-point dust
+      const rounded = Math.round(amt);
+      if (rounded > 0) creditors.push({ name, amt: rounded });
+      else if (rounded < 0) debtors.push({ name, amt: -rounded });
+    });
+
+    creditors.sort((a, b) => b.amt - a.amt);
+    debtors.sort((a, b) => b.amt - a.amt);
+
+    const transfers = [];
+    let i = 0, j = 0;
+    while (i < debtors.length && j < creditors.length) {
+      const pay = Math.min(debtors[i].amt, creditors[j].amt);
+      if (pay > 0) {
+        transfers.push({ from: debtors[i].name, to: creditors[j].name, amount: pay });
+      }
+      debtors[i].amt -= pay;
+      creditors[j].amt -= pay;
+      if (debtors[i].amt === 0) i++;
+      if (creditors[j].amt === 0) j++;
+    }
+
+    return transfers;
+  }
+
+  // Settle button
+  document.getElementById('exp-settle').addEventListener('click', () => {
+    if (expenses.length === 0) {
+      alert('尚未有支出 · 無需結算');
+      return;
+    }
+
+    // Get current rate
+    const rate = parseFloat(document.getElementById('exp-rate').value) || 0.0492;
+    document.getElementById('exp-rate-display').textContent = rate.toFixed(4);
+
+    const balance = calculateBalances();
+    const transfers = settleTransfers(balance);
+
+    const box = document.getElementById('settle-box');
+    const balancesEl = document.getElementById('settle-balances');
+    const transfersEl = document.getElementById('settle-transfers');
+
+    // Helper to format HKD
+    const toHKD = (jpy) => (Math.abs(jpy) * rate).toFixed(2);
+
+    // Render balance rows
+    balancesEl.innerHTML = PEOPLE.map(p => {
+      const amt = Math.round(balance[p]);
+      const cls = amt > 0 ? 'positive' : (amt < 0 ? 'negative' : '');
+      const prefix = amt > 0 ? '+' : (amt < 0 ? '-' : '');
+      const label = amt > 0 ? '應收' : (amt < 0 ? '應付' : '結清');
+      const hkd = amt === 0 ? '' : `<div style="font-family:var(--sans);font-size:10.5px;color:var(--ink-mute);font-weight:500;margin-top:2px;">≈ ${prefix}HK$${toHKD(amt)}</div>`;
+      return `
+        <div class="balance-row">
+          <span class="balance-name">${pill(p)} <span style="color:var(--ink-mute);font-size:11px;">${label}</span></span>
+          <span style="text-align:right;">
+            <span class="balance-amount ${cls}">${amt > 0 ? '+' : ''}¥${fmt(amt)}</span>
+            ${hkd}
+          </span>
+        </div>
+      `;
+    }).join('');
+
+    // Render transfers — HKD as primary settlement currency
+    if (transfers.length === 0) {
+      transfersEl.innerHTML = '<div class="settle-empty">已結清 · 無需轉帳</div>';
+    } else {
+      transfersEl.innerHTML = `
+        <div class="exp-form-title" style="margin-bottom:8px;">最簡轉帳方案 · ${transfers.length} 筆</div>
+        <div style="font-family:var(--serif-cjk);font-size:11px;color:var(--ink-mute);font-style:italic;margin-bottom:12px;">以 HKD 為最終結算貨幣 · JPY 為參考</div>
+        ${transfers.map(t => `
+          <div class="transfer-row" style="flex-direction:column;align-items:stretch;gap:4px;">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              ${pill(t.from)}
+              <span class="transfer-arrow">→</span>
+              ${pill(t.to)}
+              <span class="transfer-amount" style="font-size:17px;">HK$${toHKD(t.amount)}</span>
+            </div>
+            <div style="font-family:var(--sans);font-size:10.5px;color:var(--ink-mute);text-align:right;letter-spacing:0.04em;">(¥${fmt(t.amount)})</div>
+          </div>
+        `).join('')}
+      `;
+    }
+
+    box.style.display = 'block';
+    box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // Live update rate display when user types
+  document.getElementById('exp-rate').addEventListener('input', (e) => {
+    const v = parseFloat(e.target.value);
+    if (!isNaN(v)) {
+      document.getElementById('exp-rate-display').textContent = v.toFixed(4);
+    }
+  });
+
+  // Export JSON
+  document.getElementById('exp-export').addEventListener('click', () => {
+    if (expenses.length === 0) {
+      alert('尚未有紀錄可匯出');
+      return;
+    }
+    const data = JSON.stringify(expenses, null, 2);
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const today = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+    a.href = url;
+    a.download = `kyoto-expenses-${today}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  // Import JSON
+  document.getElementById('exp-import').addEventListener('click', () => {
+    document.getElementById('exp-import-file').click();
+  });
+
+  document.getElementById('exp-import-file').addEventListener('change', (ev) => {
+    const file = ev.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const imported = JSON.parse(e.target.result);
+        if (!Array.isArray(imported)) throw new Error('Invalid format');
+
+        const choice = confirm(
+          `匯入 ${imported.length} 筆紀錄\n\n` +
+          `確定 = 取代現有 ${expenses.length} 筆\n` +
+          `取消 = 合併到現有紀錄`
+        );
+
+        if (choice) {
+          expenses = imported;
+        } else {
+          const existingIds = new Set(expenses.map(e => e.id));
+          imported.forEach(e => {
+            if (!existingIds.has(e.id)) expenses.push(e);
+          });
+        }
+
+        saveExpenses();
+        render();
+        document.getElementById('settle-box').style.display = 'none';
+        alert('匯入完成 · 共 ' + expenses.length + ' 筆');
+      } catch (err) {
+        alert('匯入失敗 · 檔案格式不正確');
+        console.error(err);
+      }
+    };
+    reader.readAsText(file);
+    ev.target.value = '';  // Reset for re-import same file
+  });
+
+  // Initialize
+  loadExpenses();
+  setDefaultDate();
+  render();
+
+  // ============================================================
+  // NAV — active highlighting on scroll
+  // ============================================================
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-scroll a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('is-active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-50% 0px -50% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
