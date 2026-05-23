@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f7f3ea">
+<title>京都 · 二〇二六年五月</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Noto+Serif+TC:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f7f3ea;
+    --paper-light: #fbf8f1;
+    --surface: #ffffff;
+    --line: #d8d0bc;
+    --line-soft: #eae3d0;
+
+    --ink: #1a1815;
+    --ink-soft: #4a4640;
+    --ink-mute: #8a8478;
+    --ink-fade: #b8b1a3;
+
+    /* Travelers — Japanese seasonal palette */
+    --joyce: #1e4458;       /* 藍墨 — deep ink blue */
+    --joyce-bg: #e3ebf0;
+    --zoe: #b86b76;         /* 桃染 — dusty rose */
+    --zoe-bg: #f5e5e7;
+    --hugo: #4f6b3a;        /* 苔色 — moss */
+    --hugo-bg: #e6ece0;
+    --michael: #b8783b;     /* 山吹 — autumn amber */
+    --michael-bg: #f3e8d7;
+
+    /* Reservation accent — vermillion stamp */
+    --seal: #a44a2e;
+    --seal-bg: #f6eadd;
+    --seal-deep: #7a3520;
+
+    --warn: #a44a2e;
+    --warn-bg: #f7e8df;
+
+    --serif-en: "Cormorant Garamond", "Times New Roman", serif;
+    --serif-cjk: "Noto Serif TC", "Source Han Serif TC", serif;
+    --sans: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px;
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif-cjk);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-image:
+      radial-gradient(rgba(180,170,150,0.06) 1px, transparent 1px),
+      radial-gradient(rgba(180,170,150,0.04) 1px, transparent 1px);
+    background-size: 24px 24px, 12px 12px;
+    background-position: 0 0, 6px 6px;
+  }
+
+  /* ============ Layout ============ */
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 18px;
+  }
+
+  /* ============ Hero ============ */
+  .hero {
+    padding: 56px 0 36px;
+    text-align: center;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .hero-mark {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 28px;
+  }
+  .hero-title {
+    font-family: var(--serif-en);
+    font-weight: 300;
+    font-size: 88px;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0;
+  }
+  .hero-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--seal);
+  }
+  .hero-cjk {
+    font-family: var(--serif-cjk);
+    font-weight: 300;
+    font-size: 22px;
+    letter-spacing: 0.36em;
+    color: var(--ink-soft);
+    margin: 18px 0 0;
+    padding-left: 0.36em;
+  }
+  .hero-dates {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-top: 28px;
+  }
+  .hero-dates b {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ============ Travelers ============ */
+  .travelers {
+    padding: 36px 0 28px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .section-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin: 0 0 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::before,
+  .section-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line-soft);
+  }
+  .traveler-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .traveler {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--line-soft);
+    border-radius: 4px;
+    background: var(--paper-light);
+  }
+  .traveler-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif-en);
+    font-weight: 500;
+    font-size: 18px;
+    color: #fff;
+    letter-spacing: 0;
+  }
+  .t-j .traveler-dot { background: var(--joyce); }
+  .t-z .traveler-dot { background: var(--zoe); }
+  .t-h .traveler-dot { background: var(--hugo); }
+  .t-m .traveler-dot { background: var(--michael); }
+
+  .traveler-meta { line-height: 1.3; }
+  .traveler-name {
+    font-family: var(--serif-en);
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--ink);
+  }
+  .traveler-dates {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--ink-mute);
+    margin-top: 2px;
+  }
+
+  /* Reservation key */
+  .key-row {
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background: var(--seal-bg);
+    border-left: 3px solid var(--seal);
+    border-radius: 0 4px 4px 0;
+  }
+  .key-stamp {
+    width: 28px;
+    height: 28px;
+    background: var(--seal);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif-cjk);
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .key-text {
+    font-family: var(--serif-cjk);
+    font-size: 13px;
+    color: var(--seal-deep);
+    line-height: 1.5;
+  }
+
+  /* ============ Sticky Nav ============ */
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(247, 243, 234, 0.92);
+    backdrop-filter: saturate(140%) blur(12px);
+    -webkit-backdrop-filter: saturate(140%) blur(12px);
+    border-bottom: 1px solid var(--line-soft);
+    margin-top: 24px;
+  }
+  .nav-scroll {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 6px;
+  }
+  .nav-scroll::-webkit-scrollbar { display: none; }
+  .nav-scroll a {
+    flex: 0 0 auto;
+    padding: 14px 12px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .nav-scroll a:hover { color: var(--ink); }
+  .nav-scroll a.is-active {
+    color: var(--ink);
+    border-bottom-color: var(--seal);
+  }
+
+  /* ============ Section Heads ============ */
+  section { padding: 40px 0 8px; }
+  .section-eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--seal);
+    margin-bottom: 8px;
+  }
+  .section-heading {
+    font-family: var(--serif-en);
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+  .section-heading em {
+    font-style: italic;
+    color: var(--seal);
+  }
+  .section-sub {
+    font-family: var(--serif-cjk);
+    font-size: 14px;
+    color: var(--ink-mute);
+    margin: 0 0 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  /* ============ Overview Table ============ */
+  .overview-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .ov-day {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 48px 1fr 78px;
+    gap: 10px;
+  }
+
+  /* Travelers name column */
+  .ov-travelers {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding-top: 2px;
+    align-items: flex-end;
+    text-align: right;
+    font-family: var(--serif-en);
+  }
+  .t-name {
+    font-family: var(--serif-en);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .t-name.t-joyce { color: var(--joyce); }
+  .t-name.t-zoe { color: var(--zoe); }
+  .t-name.t-hugo { color: var(--hugo); }
+  .t-name.t-michael { color: var(--michael); }
+  .t-name.absent {
+    opacity: 0.32;
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--ink-fade);
+  }
+  .t-name-note {
+    display: block;
+    font-family: var(--serif-cjk);
+    font-size: 9px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--ink-mute);
+    line-height: 1.2;
+    margin-top: -1px;
+    letter-spacing: 0;
+  }
+  .ov-day.hot { background: linear-gradient(to right, transparent, rgba(164, 74, 46, 0.05)); }
+  .ov-date {
+    font-family: var(--serif-en);
+    line-height: 1;
+  }
+  .ov-day-num {
+    font-size: 38px;
+    font-weight: 300;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .ov-day-month {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+  .ov-day-week {
+    font-family: var(--serif-cjk);
+    font-size: 11px;
+    color: var(--ink-mute);
+    margin-top: 4px;
+    letter-spacing: 0.2em;
+  }
+  .ov-body { min-width: 0; }
+  .ov-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+  .ov-title {
+    font-family: var(--serif-cjk);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink);
+    flex: 1;
+    min-width: 0;
+  }
+  .ov-weather {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    background: var(--paper);
+    padding: 3px 7px;
+    border: 1px solid var(--line-soft);
+    border-radius: 2px;
+  }
+  .ov-weather.hot {
+    color: var(--seal);
+    border-color: var(--seal);
+    background: var(--seal-bg);
+  }
+
+  .ov-companions {
+    display: flex;
+    gap: 4px;
+    margin: 8px 0;
+    flex-wrap: wrap;
+  }
+  .companion {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif-en);
+    font-weight: 600;
+    font-size: 11px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .companion.c-j { background: var(--joyce); }
+  .companion.c-z { background: var(--zoe); }
+  .companion.c-h { background: var(--hugo); }
+  .companion.c-m { background: var(--michael); }
+  .companion.absent {
+    background: transparent;
+    border: 1px dashed var(--ink-fade);
+    color: var(--ink-fade);
+  }
+  .companion-note {
+    font-family: var(--serif-cjk);
+    font-size: 11px;
+    color: var(--ink-mute);
+    margin-left: 4px;
+    align-self: center;
+  }
+
+  .ov-acts {
+    list-style: none;
+    margin: 6px 0 0;
+    padding: 0;
+  }
+  .ov-acts li {
+    font-family: var(--serif-cjk);
+    font-size: 13px;
+    color: var(--ink-soft);
+    padding: 3px 0;
+    line-height: 1.55;
+  }
+  .ov-acts .time {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-mute);
+    margin-right: 6px;
+    letter-spacing: 0.04em;
+  }
+  /* Reservation pill inline */
+  .res-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--seal-bg);
+    color: var(--seal-deep);
+    border-left: 2px solid var(--seal);
+    padding: 2px 7px 2px 6px;
+    font-family: var(--serif-cjk);
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 0 3px 3px 0;
+    line-height: 1.4;
+  }
+  .res-pill::before {
+    content: "印";
+    font-family: var(--serif-cjk);
+    font-size: 10px;
+    background: var(--seal);
+    color: #fff;
+    padding: 1px 4px;
+    border-radius: 2px;
+    margin-right: 3px;
+    letter-spacing: 0;
+  }
+  .res-pill .time {
+    color: var(--seal-deep);
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    margin: 0 4px 0 0;
+  }
+
+  /* ============ Bookings ============ */
+  .booking {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 14px;
+    padding: 16px 14px;
+    background: var(--seal-bg);
+    border-left: 3px solid var(--seal);
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+  .booking-when {
+    line-height: 1.2;
+  }
+  .booking-date {
+    font-family: var(--serif-en);
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--seal-deep);
+  }
+  .booking-time {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--seal);
+    letter-spacing: 0.06em;
+    margin-top: 2px;
+  }
+  .booking-main {
+    min-width: 0;
+  }
+  .booking-name {
+    font-family: var(--serif-cjk);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+  .booking-meta {
+    font-family: var(--serif-cjk);
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+  .booking-people {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+  .booking-people .who {
+    display: flex;
+    gap: 3px;
+  }
+  .booking-people .who .companion {
+    width: 18px;
+    height: 18px;
+    font-size: 9px;
+  }
+  .booking-people .count {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--seal-deep);
+    letter-spacing: 0.1em;
+  }
+
+  /* ============ Day Detail Cards ============ */
+  .day-card {
+    margin-top: 36px;
+    padding: 28px 22px 24px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    position: relative;
+    box-shadow: 0 1px 0 rgba(180,170,150,0.08);
+  }
+  .day-card.hot {
+    border-top: 3px solid var(--seal);
+  }
+
+  .day-header {
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .day-num {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--seal);
+    margin-bottom: 6px;
+  }
+  .day-title {
+    font-family: var(--serif-en);
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.05;
+    color: var(--ink);
+    margin: 0 0 4px;
+  }
+  .day-cjk {
+    font-family: var(--serif-cjk);
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin: 4px 0 0;
+    letter-spacing: 0.06em;
+  }
+  .day-status-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+  .day-companions {
+    display: flex;
+    gap: 4px;
+  }
+  .day-weather {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    padding: 3px 8px;
+    background: var(--paper);
+    border: 1px solid var(--line-soft);
+    border-radius: 2px;
+  }
+  .day-weather.hot {
+    color: var(--seal);
+    border-color: var(--seal);
+    background: var(--seal-bg);
+  }
+
+  /* Timeline */
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-time {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    padding-top: 2px;
+  }
+  .timeline-item.has-res .timeline-time {
+    color: var(--seal);
+  }
+  .timeline-content {
+    min-width: 0;
+  }
+  .timeline-title {
+    font-family: var(--serif-cjk);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.5;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .timeline-item.has-res .timeline-title::before {
+    content: "印";
+    display: inline-block;
+    font-family: var(--serif-cjk);
+    font-weight: 600;
+    font-size: 9px;
+    background: var(--seal);
+    color: #fff;
+    padding: 1px 4px;
+    border-radius: 2px;
+    margin-right: 4px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+  }
+  .timeline-who {
+    display: inline-flex;
+    gap: 2px;
+    margin-left: 4px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  /* Name pills replacing initials in timelines + day headers */
+  .who-n {
+    display: inline-block;
+    font-family: var(--serif-en);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin: 1px 2px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  .who-n.joyce   { color: var(--joyce); background: var(--joyce-bg); }
+  .who-n.zoe     { color: var(--zoe); background: var(--zoe-bg); }
+  .who-n.hugo    { color: var(--hugo); background: var(--hugo-bg); }
+  .who-n.michael { color: var(--michael); background: var(--michael-bg); }
+  .who-n.absent  { opacity: 0.3; text-decoration: line-through; text-decoration-thickness: 1px; }
+  .timeline-desc {
+    font-family: var(--serif-cjk);
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    line-height: 1.6;
+  }
+  .timeline-desc strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* Note / Callout */
+  .note {
+    margin: 18px 0;
+    padding: 12px 14px;
+    background: var(--paper-light);
+    border-left: 3px solid var(--ink-fade);
+    border-radius: 0 4px 4px 0;
+    font-family: var(--serif-cjk);
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .note.warn {
+    background: var(--warn-bg);
+    border-left-color: var(--warn);
+    color: var(--seal-deep);
+  }
+  .note-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-right: 6px;
+  }
+  .note.warn .note-label { color: var(--warn); }
+
+  /* Tier 2 subsection */
+  .tier2 {
+    margin-top: 20px;
+    padding: 14px 16px;
+    background: var(--paper-light);
+    border-left: 2px solid var(--line);
+    border-radius: 0 4px 4px 0;
+  }
+  .tier2-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 10px;
+  }
+  .tier2-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .tier2-list li {
+    padding: 6px 0;
+    font-family: var(--serif-cjk);
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .tier2-list li strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* Action items / TODO */
+  .todo-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .todo-list li {
+    padding: 14px 16px;
+    background: var(--paper-light);
+    border-left: 3px solid var(--warn);
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 10px;
+    font-family: var(--serif-cjk);
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .todo-list li strong {
+    display: block;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 60px 0 80px;
+    text-align: center;
+    border-top: 1px solid var(--line-soft);
+    margin-top: 40px;
+  }
+  .footer-mark {
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 18px;
+    color: var(--ink-mute);
+  }
+  .footer-meta {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-fade);
+    margin-top: 16px;
+  }
+
+  /* Subtle separator */
+  .ornament {
+    text-align: center;
+    margin: 32px 0;
+    font-family: var(--serif-en);
+    font-size: 14px;
+    color: var(--ink-fade);
+    letter-spacing: 1em;
+  }
+
+  /* ============ Responsive ============ */
+  @media (max-width: 480px) {
+    .wrap { padding: 0 16px; }
+    .hero { padding: 44px 0 30px; }
+    .hero-title { font-size: 68px; }
+    .hero-cjk { font-size: 19px; letter-spacing: 0.28em; }
+    .section-heading { font-size: 28px; }
+    .day-card { padding: 22px 16px 20px; }
+    .day-title { font-size: 24px; }
+    .traveler-grid { grid-template-columns: 1fr; }
+    .ov-day { grid-template-columns: 42px 1fr 72px; gap: 8px; }
+    .ov-day-num { font-size: 32px; }
+    .t-name { font-size: 11px; }
+    .booking { grid-template-columns: 70px 1fr; gap: 10px; padding: 14px 12px; }
+    .booking-people {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--seal);
+    }
+    .timeline-item { grid-template-columns: 56px 1fr; gap: 10px; }
+  }
+
+  @media (min-width: 720px) {
+    .wrap { padding: 0 24px; }
+    body { font-size: 16px; }
+  }
+
+  /* Print */
+  @media print {
+    body { background: #fff; }
+    .navbar { display: none; }
+    .day-card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-mark">Travel Journal · MMXXVI</div>
+    <h1 class="hero-title">Ky<em>ō</em>to</h1>
+    <div class="hero-cjk">京 都</div>
+    <div class="hero-dates"><b>May 23 — 28</b> · 2026 · 六日五夜</div>
+  </div>
+</header>
+
+<!-- ============ TRAVELERS ============ -->
+<section class="travelers">
+  <div class="wrap">
+    <div class="section-label">同行 · Companions</div>
+    <div class="traveler-grid">
+      <div class="traveler t-j">
+        <div class="traveler-dot">J</div>
+        <div class="traveler-meta">
+          <div class="traveler-name">Joyce</div>
+          <div class="traveler-dates">5.23 — 5.28 · 全程</div>
+        </div>
+      </div>
+      <div class="traveler t-z">
+        <div class="traveler-dot">Z</div>
+        <div class="traveler-meta">
+          <div class="traveler-name">Zoe</div>
+          <div class="traveler-dates">5.23 — 5.28 · 全程</div>
+        </div>
+      </div>
+      <div class="traveler t-h">
+        <div class="traveler-dot">H</div>
+        <div class="traveler-meta">
+          <div class="traveler-name">Hugo</div>
+          <div class="traveler-dates">5.23 — 5.26 · 四天</div>
+        </div>
+      </div>
+      <div class="traveler t-m">
+        <div class="traveler-dot">M</div>
+        <div class="traveler-meta">
+          <div class="traveler-name">Michael</div>
+          <div class="traveler-dates">5.24 — 5.28 · 五天</div>
+        </div>
+      </div>
+    </div>
+    <div class="key-row">
+      <div class="key-stamp">印</div>
+      <div class="key-text">標示「印」者為已確認訂位 · 共 9 項</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STICKY NAV ============ -->
+<nav class="navbar">
+  <div class="nav-scroll">
+    <a href="#overview">總覽</a>
+    <a href="#day-1">5.23</a>
+    <a href="#day-2">5.24</a>
+    <a href="#day-3">5.25</a>
+    <a href="#day-4">5.26</a>
+    <a href="#day-5">5.27</a>
+    <a href="#day-6">5.28</a>
+    <a href="#todo">待辦</a>
+  </div>
+</nav>
+
+<!-- ============ OVERVIEW ============ -->
+<section id="overview">
+  <div class="wrap">
+    <div class="section-eyebrow">At a glance</div>
+    <h2 class="section-heading">行程 <em>總覽</em></h2>
+    <p class="section-sub">每日同行者與重點 · 紅章「印」為已確認訂位</p>
+
+    <div class="overview-list">
+
+      <!-- Day 1 -->
+      <a href="#day-1" class="ov-day" style="text-decoration:none;color:inherit;">
+        <div class="ov-date">
+          <div class="ov-day-num">23</div>
+          <div class="ov-day-month">May</div>
+          <div class="ov-day-week">六</div>
+        </div>
+        <div class="ov-body">
+          <div class="ov-head">
+            <div class="ov-title">抵達 · 二寧坂三年坂黃昏散步</div>
+            <div class="ov-weather">21°/17°</div>
+          </div>
+          <ul class="ov-acts">
+            <li><span class="time">15:15</span>KIX 抵達 → Haruka → 民宿</li>
+            <li><span class="time">18:15</span>二寧坂 + 三年坂 + ねねの道 黃昏散步 (日落 18:55)</li>
+            <li><span class="time">20:00</span>祇園輕鬆晚餐</li>
+          </ul>
+        </div>
+        <div class="ov-travelers">
+          <span class="t-name t-joyce">Joyce</span>
+          <span class="t-name t-zoe">Zoe</span>
+          <span class="t-name t-hugo">Hugo</span>
+          <span class="t-name t-michael absent">Michael<span class="t-name-note">翌日抵</span></span>
+        </div>
+      </a>
+
+      <!-- Day 2 -->
+      <a href="#day-2" class="ov-day" style="text-decoration:none;color:inherit;">
+        <div class="ov-date">
+          <div class="ov-day-num">24</div>
+          <div class="ov-day-month">May</div>
+          <div class="ov-day-week">日</div>
+        </div>
+        <div class="ov-body">
+          <div class="ov-head">
+            <div class="ov-title">大原山里 · 柏悅夜景首聚</div>
+            <div class="ov-weather">25°/16°</div>
+          </div>
+          <ul class="ov-acts">
+            <li><span class="time">09:00</span>出發大原 (Joyce, Zoe, Hugo)</li>
+            <li><span class="time">10—15</span>三千院 + 寶泉院 + 寂光院 + 山里午餐</li>
+            <li><span class="time">15:00</span>3 人同的士回町中 · Hugo 下民宿,Michael 已抵</li>
+            <li><span class="res-pill"><span class="time">16:00</span>東山緒方 · Joyce, Zoe</span></li>
+            <li><span class="res-pill"><span class="time">18:30</span>すぢや · Michael, Hugo</span></li>
+            <li><span class="res-pill"><span class="time">20:30</span>琥珀 Kohaku · 4 人</span></li>
+          </ul>
+        </div>
+        <div class="ov-travelers">
+          <span class="t-name t-joyce">Joyce</span>
+          <span class="t-name t-zoe">Zoe</span>
+          <span class="t-name t-hugo">Hugo</span>
+          <span class="t-name t-michael">Michael<span class="t-name-note">14:30 抵京</span></span>
+        </div>
+      </a>
+
+      <!-- Day 3 — hot day -->
+      <a href="#day-3" class="ov-day hot" style="text-decoration:none;color:inherit;">
+        <div class="ov-date">
+          <div class="ov-day-num">25</div>
+          <div class="ov-day-month">May</div>
+          <div class="ov-day-week">一</div>
+        </div>
+        <div class="ov-body">
+          <div class="ov-head">
+            <div class="ov-title">高溫日 · 河原町 Vintage + 藝妓文化夜</div>
+            <div class="ov-weather hot">31°/19°</div>
+          </div>
+          <ul class="ov-acts">
+            <li><span class="time">09:00</span>起床 · 9:30 鴨川邊悠閒早餐</li>
+            <li><span class="time">11—14</span>河原町 vintage 6 家 (BAL 11:00 開) · Joyce, Zoe, Hugo</li>
+            <li><span class="res-pill"><span class="time">14:00</span>400 Kyoto Pizza · 4 人</span></li>
+            <li><span class="res-pill"><span class="time">16:00</span>Gion Theater 藝妓表演 · 4 人</span></li>
+            <li><span class="time">17—19</span>京都百貨補完 · Joyce, Zoe, Hugo</li>
+            <li><span class="res-pill"><span class="time">19:00</span>米處いなもと · 4 人</span></li>
+            <li><span class="time">21:00</span>早歸早睡 · 為翌日金閣寺養精蓄銳</li>
+          </ul>
+        </div>
+        <div class="ov-travelers">
+          <span class="t-name t-joyce">Joyce</span>
+          <span class="t-name t-zoe">Zoe</span>
+          <span class="t-name t-hugo">Hugo</span>
+          <span class="t-name t-michael">Michael<span class="t-name-note">民宿工作 · 只赴訂位</span></span>
+        </div>
+      </a>
+
+      <!-- Day 4 -->
+      <a href="#day-4" class="ov-day" style="text-decoration:none;color:inherit;">
+        <div class="ov-date">
+          <div class="ov-day-num">26</div>
+          <div class="ov-day-month">May</div>
+          <div class="ov-day-week">二</div>
+        </div>
+        <div class="ov-body">
+          <div class="ov-head">
+            <div class="ov-title">金閣寺 · 嵐山輕量 · Hugo 餞別夜</div>
+            <div class="ov-weather">28°/20°</div>
+          </div>
+          <ul class="ov-acts">
+            <li><span class="time">08:00</span>民宿出 → 的士 → 金閣寺(9:00 開門)</li>
+            <li><span class="time">09:00</span>金閣寺(~1 小時 15 分)</li>
+            <li><span class="time">10:45</span>嵐山 · 竹林 + 渡月橋(略過天龍寺)</li>
+            <li><span class="time">12:30</span>嵐山午餐</li>
+            <li><span class="time">PM</span>自由活動 / TBD</li>
+            <li><span class="time">18:30</span>4 人 Hugo 餞別晚餐</li>
+            <li><span class="time">21:00</span>FUREK LAB0 雞尾酒</li>
+          </ul>
+        </div>
+        <div class="ov-travelers">
+          <span class="t-name t-joyce">Joyce</span>
+          <span class="t-name t-zoe">Zoe</span>
+          <span class="t-name t-hugo">Hugo<span class="t-name-note">最後一天</span></span>
+          <span class="t-name t-michael">Michael</span>
+        </div>
+      </a>
+
+      <!-- Day 5 -->
+      <a href="#day-5" class="ov-day" style="text-decoration:none;color:inherit;">
+        <div class="ov-date">
+          <div class="ov-day-num">27</div>
+          <div class="ov-day-month">May</div>
+          <div class="ov-day-week">三</div>
+        </div>
+        <div class="ov-body">
+          <div class="ov-head">
+            <div class="ov-title">分組日 · 美秀(Michael) · 清水寺 + 東寺(Joyce, Zoe)</div>
+            <div class="ov-weather">25°/19°</div>
+          </div>
+          <ul class="ov-acts">
+            <li><span class="time">08:00</span>Michael 出發美秀美術館</li>
+            <li><span class="time">08:15</span>Joyce, Zoe 清水寺(早晨人少)</li>
+            <li><span class="res-pill"><span class="time">12:30</span>土井活鰻 · Joyce, Zoe (2 小時)</span></li>
+            <li><span class="time">14:30</span>東寺 · Joyce, Zoe (至 17:00)</li>
+            <li><span class="time">17:00</span>3 人匯合 · 民宿小休</li>
+            <li><span class="res-pill"><span class="time">19:00</span>KURO KYOTO · 3 人</span></li>
+            <li><span class="res-pill"><span class="time">22:00</span>Hideout KICK Kyoto · speakeasy · 3 人</span></li>
+          </ul>
+        </div>
+        <div class="ov-travelers">
+          <span class="t-name t-joyce">Joyce</span>
+          <span class="t-name t-zoe">Zoe</span>
+          <span class="t-name t-hugo absent">Hugo</span>
+          <span class="t-name t-michael">Michael</span>
+        </div>
+      </a>
+
+      <!-- Day 6 -->
+      <a href="#day-6" class="ov-day" style="text-decoration:none;color:inherit;">
+        <div class="ov-date">
+          <div class="ov-day-num">28</div>
+          <div class="ov-day-month">May</div>
+          <div class="ov-day-week">四</div>
+        </div>
+        <div class="ov-body">
+          <div class="ov-head">
+            <div class="ov-title">輕鬆收尾 · 離開 KIX</div>
+            <div class="ov-weather">24°/19°</div>
+          </div>
+          <ul class="ov-acts">
+            <li><span class="time">08:30</span>民宿早餐</li>
+            <li><span class="time">10:00</span>硬性退房 ⚠</li>
+            <li><span class="time">11:00</span>Haruka → 12:15 抵 KIX</li>
+            <li><span class="time">12:15</span>KIX 4 小時免稅店 + 慢餐</li>
+            <li><span class="time">16:15</span>起飛回港</li>
+          </ul>
+        </div>
+        <div class="ov-travelers">
+          <span class="t-name t-joyce">Joyce</span>
+          <span class="t-name t-zoe">Zoe</span>
+          <span class="t-name t-hugo absent">Hugo</span>
+          <span class="t-name t-michael">Michael</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ DAY 1 ============ -->
+<section id="day-1">
+  <div class="wrap">
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num">Day One · 5.23</div>
+        <h3 class="day-title">Arrival <em>&amp;</em> Twilight</h3>
+        <div class="day-cjk">抵達京都 · 二寧坂三年坂黃昏散步</div>
+        <div class="day-status-row">
+          <div class="day-companions">
+            <span class="who-n joyce">Joyce</span>
+            <span class="who-n zoe">Zoe</span>
+            <span class="who-n hugo">Hugo</span>
+            <span class="who-n michael absent">Michael</span>
+          </div>
+          <div class="day-weather">21° / 17° · 涼爽</div>
+        </div>
+      </div>
+
+      <ul class="timeline">
+        <li class="timeline-item">
+          <div class="timeline-time">15:15</div>
+          <div class="timeline-content">
+            <div class="timeline-title">KIX 抵達</div>
+            <div class="timeline-desc">Haruka 特急 → 京都站(75 分鐘) · 預留 30 分入境 + 取行李</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">17:45</div>
+          <div class="timeline-content">
+            <div class="timeline-title">抵民宿 Check-in</div>
+            <div class="timeline-desc">宮川筋四丁目 605-0801 · Karen 接待 · 整裝小休</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">18:15</div>
+          <div class="timeline-content">
+            <div class="timeline-title">二寧坂 → 三年坂 → ねねの道</div>
+            <div class="timeline-desc"><strong>本次行程最美的黃金時段。</strong>日落 18:55,18:15 - 19:30 走二寧坂三年坂石板坡道:先黃金時段拍坡道全景,再藍時段(blue hour)拍燈下塔影。八坂塔點燈後別有風味。</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">20:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">祇園輕鬆晚餐</div>
+            <div class="timeline-desc">不訂位,看狀態選擇:祇園小路居酒屋、先斗町立飲、四条通拉麵店皆可。長途飛行後輕鬆吃,別給自己壓力</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">Tip</span>二寧坂三年坂日間人潮極多,17:30 後旅行團散去,18:00 - 19:30 是攝影黃金時段。穿好走的鞋,石板路濕滑
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DAY 2 ============ -->
+<section id="day-2">
+  <div class="wrap">
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num">Day Two · 5.24</div>
+        <h3 class="day-title">Ōhara <em>&amp;</em> Reunions</h3>
+        <div class="day-cjk">大原廟院巡遊 · Michael 抵京 · 柏悅首聚</div>
+        <div class="day-status-row">
+          <div class="day-companions">
+            <span class="who-n joyce">Joyce</span>
+            <span class="who-n zoe">Zoe</span>
+            <span class="who-n hugo">Hugo</span>
+            <span class="who-n michael">Michael</span>
+          </div>
+          <div class="day-weather">25° / 16° · 涼爽舒適</div>
+        </div>
+      </div>
+
+      <ul class="timeline">
+        <li class="timeline-item">
+          <div class="timeline-time">09:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">出發大原
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span></span>
+            </div>
+            <div class="timeline-desc">的士 ~30 分鐘 ¥7,000 - 9,000(來回皆建議的士)</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">09:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">抵大原 · 開始巡寺</div>
+            <div class="timeline-desc">5 小時半時間從容遊覽:三千院(往生極樂院、苔庭)→ 寶泉院(枝垂松 · 抹茶坐席遠眺竹林)→ 寂光院(平家物語舞台)。大原的靜謐感最濃,不必趕</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">13:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">blend kyoto 大原店 · 午餐</div>
+            <div class="timeline-desc">山里現代茶屋,輕食 + 茶點。或大原野菜直賣所小店</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">15:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">3 人同的士回町中
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span></span>
+            </div>
+            <div class="timeline-desc">~30 分鐘車程。<strong>Hugo</strong> 下民宿 · Michael(14:30 - 15:30 抵)應已在民宿。<strong>Joyce + Zoe</strong> 繼續到東山緒方附近,15:45 抵,可短暫咖啡稍歇</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">15:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">Hugo + Michael 民宿會合
+              <span class="timeline-who"><span class="who-n hugo">Hugo</span><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">Hugo 帶 Michael 簡短介紹民宿、宮川筋、祇園八坂塔一帶,或附近咖啡。至 18:00 出發すぢや。約 3 小時悠閒</div>
+          </div>
+        </li>
+        <li class="timeline-item has-res">
+          <div class="timeline-time">16:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">東山緒方 · 懷石
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span></span>
+            </div>
+            <div class="timeline-desc">京都頂級懷石之一 · 訂位費已付 · 2.5 - 3 小時</div>
+          </div>
+        </li>
+        <li class="timeline-item has-res">
+          <div class="timeline-time">18:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">すぢや 四条御幸町店 · 串燒
+              <span class="timeline-who"><span class="who-n michael">Michael</span><span class="who-n hugo">Hugo</span></span>
+            </div>
+            <div class="timeline-desc">Michael + Hugo 二人單獨晚餐 · Michael 抵京第一餐</div>
+          </div>
+        </li>
+        <li class="timeline-item has-res">
+          <div class="timeline-time">20:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">琥珀 Kohaku · 京都柏悅
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">4 人首次匯合 · 高層雞尾酒吧夜景 · 訂位費已付</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="tier2">
+        <div class="tier2-label">Tier 2 · 附近可探索</div>
+        <ul class="tier2-list">
+          <li><strong>實光院</strong> · 大原另一隱密寺院,庭園靜謐有契心庭、旭翠園兩處</li>
+          <li><strong>勝林院</strong> · 三千院後方,聲明發祥地</li>
+          <li><strong>大原女小路</strong> · 古道散步,有手作鋪、漬物店</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DAY 3 ============ -->
+<section id="day-3">
+  <div class="wrap">
+    <div class="day-card hot">
+      <div class="day-header">
+        <div class="day-num">Day Three · 5.25</div>
+        <h3 class="day-title">Heat Day <em>·</em> Indoor</h3>
+        <div class="day-cjk">高溫日 · 全日室內購物 · 藝妓文化夜</div>
+        <div class="day-status-row">
+          <div class="day-companions">
+            <span class="who-n joyce">Joyce</span>
+            <span class="who-n zoe">Zoe</span>
+            <span class="who-n hugo">Hugo</span>
+            <span class="who-n michael">Michael</span>
+          </div>
+          <div class="day-weather hot">31° / 19° · 本次最熱</div>
+        </div>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">Heat strategy</span>本日預測 31°C,本次行程最熱一日。<strong>全日室內活動,完全避開戶外暴曬</strong>:vintage 購物、pizza、藝妓表演、米處。所有點均有冷氣
+      </div>
+
+      <div class="note">
+        <span class="note-label">Michael 工作日</span>Michael 5/25 留在民宿工作 ·<strong>只赴 3 個訂位</strong>:14:00 pizza · 16:00 theater · 19:00 米處。其餘時段在民宿
+      </div>
+
+      <div class="note">
+        <span class="note-label">早睡</span>本晚不安排雞尾酒酒吧 · 為翌日 5/26 金閣寺 7 點起床養精蓄銳。原 Hideout KICK 已移至 5/27 晚
+      </div>
+
+      <ul class="timeline">
+        <li class="timeline-item">
+          <div class="timeline-time">09:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">起床</div>
+            <div class="timeline-desc">前一晚大原日 + 三餐連訂位,本日刻意較晚起。商店多 11:00 - 12:00 才開,不必早</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">09:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">B STORE 1st · 鴨川邊悠閒早餐
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span></span>
+            </div>
+            <div class="timeline-desc">京町家百年老屋,鴨川邊。<strong>5/1 - 10/15 川床季</strong> · 早餐 8:00 - 11:00。從民宿過四条大橋 ~10 分鐘步行。慢慢吃,1.5 小時也無妨</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">11:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">河原町 vintage 巡禮
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span></span>
+            </div>
+            <div class="timeline-desc">11:00 - 14:00 集中走完 6 家,室內冷氣足。順序依據開店時間:<strong>BAL 11:00</strong> → <strong>Kindal</strong> → <strong>Flamingo 12:00</strong> → <strong>NeeD</strong> → <strong>SAVI</strong> → <strong>Decouverte</strong>。Michael 在民宿工作</div>
+          </div>
+        </li>
+        <li class="timeline-item has-res">
+          <div class="timeline-time">14:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">400 Kyoto · 柴火燒披薩
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">Michael 來會合 · 市中心 · 室內冷氣 · 訂位費已付</div>
+          </div>
+        </li>
+        <li class="timeline-item has-res">
+          <div class="timeline-time">16:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">Gion Theater · 藝妓 / 舞妓表演
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">1 小時 · 17:00 結束 · 室內冷氣 · 距民宿步行 5 分鐘 · Klook 預訂 HK$2,580</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">17—19</div>
+          <div class="timeline-content">
+            <div class="timeline-title">京都百貨補完
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span></span>
+            </div>
+            <div class="timeline-desc">Michael 返民宿續工作 · Joyce, Zoe, Hugo 補完上午未走完店 或 直接逛百貨:<strong>高島屋京都店</strong>、<strong>大丸京都店</strong>(四条河原町,10:00 - 20:00)、<strong>藤井大丸</strong>(10:30 - 20:00)、<strong>京都伊勢丹</strong>(京都站,10:00 - 20:00)。冷氣足、可購買日本品牌與京都銘菓伴手禮</div>
+          </div>
+        </li>
+        <li class="timeline-item has-res">
+          <div class="timeline-time">19:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">米處いなもと
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">4 人匯合 · 以米飯為主題的晚餐 · 訂位費已付</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">21:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">回民宿 · 早睡</div>
+            <div class="timeline-desc">翌日 5/26 金閣寺 9:00 開門,7:00 起床準備。本晚不安排雞尾酒酒吧</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="tier2">
+        <div class="tier2-label">6 家 Vintage 詳情</div>
+        <ul class="tier2-list">
+          <li><strong>Kyoto BAL</strong> · 河原町通三条下ル山崎町 251 · 11:00 - 20:00</li>
+          <li><strong>Flamingo 京都店</strong> · 新京極六角下ル中筋町 490 B1F · 平日 12:00 - 21:00</li>
+          <li><strong>NeeD</strong> · 中京區妙満寺前町 463(郵編 604-0932) · Joyce 收藏名單。出發前確認當日營業</li>
+          <li><strong>Kindal 京都店</strong> · 中京區円福寺前町 282(河原町駅步行 4 分) · 11:00 - 20:00 無休 · 中古設計師服飾、包、錶</li>
+          <li><strong>SAVI VINTAGE KYOTO</strong> · 中京區八百屋町 112-1 · 京町家空間 · HERMES、CHANEL 古董包與配飾為主 · 出發前 Instagram @savi.kyoto 確認</li>
+          <li><strong>Decouverte 京都店</strong> · 下京區貞安前之町 609 飯田屋ビル 1F · BAYCREW'S 旗下高端 vintage(LV、CHANEL、HERMES、Gucci)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DAY 4 ============ -->
+<section id="day-4">
+  <div class="wrap">
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num">Day Four · 5.26</div>
+        <h3 class="day-title">Kinkaku-ji <em>&amp;</em> Arashiyama</h3>
+        <div class="day-cjk">金閣寺 + 嵐山 · Hugo 餞別夜</div>
+        <div class="day-status-row">
+          <div class="day-companions">
+            <span class="who-n joyce">Joyce</span>
+            <span class="who-n zoe">Zoe</span>
+            <span class="who-n hugo">Hugo</span>
+            <span class="who-n michael">Michael</span>
+          </div>
+          <div class="day-weather">28° / 20°</div>
+        </div>
+      </div>
+
+      <div class="note">
+        <span class="note-label">出席</span>全員 4 人 · Hugo 最後一個完整日。Michael 的美秀美術館已移至 Day 5
+      </div>
+
+      <ul class="timeline">
+        <li class="timeline-item">
+          <div class="timeline-time">07:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">起床 · 早餐</div>
+            <div class="timeline-desc">前一晚已早睡。民宿簡單早餐或路邊便利店,趕在金閣寺 9:00 開門前抵達</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">08:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">民宿出 → 金閣寺</div>
+            <div class="timeline-desc">的士 ¥2,500 - 3,500 / 25 - 30 分鐘。8:30 抵達後在門口稍候 9:00 開門</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">09:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">金閣寺 · 鹿苑寺(~1 小時 15 分)</div>
+            <div class="timeline-desc">9:00 - 10:15 從容遊覽 · 繞鏡湖池一圈、不同角度拍金閣倒影。出口處抹茶亭可休 · 早晨光線最佳</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">10:15</div>
+          <div class="timeline-content">
+            <div class="timeline-title">金閣 → 嵐山</div>
+            <div class="timeline-desc">的士 ~¥3,000 / 25 - 30 分鐘</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">10:45</div>
+          <div class="timeline-content">
+            <div class="timeline-title">嵐山輕量遊 · 竹林 + 渡月橋</div>
+            <div class="timeline-desc"><strong>不去天龍寺</strong>。10:45 - 12:30 兩個重點:竹林の道(慢走拍照 30 - 40 分鐘)+ 渡月橋(橋上眺保津川 + 周邊街道)。剩餘時間在嵯峨野通逛伴手禮</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">12:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">嵐山午餐</div>
+            <div class="timeline-desc">嵯峨豆腐稻 · 嵐山よしむら(蕎麥)· 老松(和菓子茶屋)</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">14:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">返民宿</div>
+            <div class="timeline-desc">嵐電 / JR / 的士 ~30 分鐘 · 14:30 抵民宿</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">PM</div>
+          <div class="timeline-content">
+            <div class="timeline-title">自由活動 / TBD</div>
+            <div class="timeline-desc">下午刻意留白 · 看當下狀態決定:民宿小休、Michael 工作補時段、祇園漫步、咖啡店、Joyce 個別安排皆可</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">18:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">Hugo 餞別晚餐
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n hugo">Hugo</span><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">未訂位 · 4 人最後一餐 · 可走祇園或先斗町,看狀態選</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">21:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">FUREK LAB0 · 雞尾酒餞別</div>
+            <div class="timeline-desc">飯後酒。Hugo 翌日離,最後一晚不熬太晚</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="tier2">
+        <div class="tier2-label">Tier 2 · 嵐山可加入</div>
+        <ul class="tier2-list">
+          <li><strong>嵐山小火車 嵯峨野</strong> · 龜岡來回 ~1 小時,風景線路。需提前預約</li>
+          <li><strong>大覚寺</strong> · 嵯峨深處,大澤池四季美</li>
+          <li><strong>祇王寺</strong> · 嵐山西側,平家物語題材,苔庭精緻</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DAY 5 ============ -->
+<section id="day-5">
+  <div class="wrap">
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num">Day Five · 5.27</div>
+        <h3 class="day-title">Split Day <em>·</em> Miho &amp; Tō-ji</h3>
+        <div class="day-cjk">分組日 · Michael 美秀 · Joyce, Zoe 清水寺 + 東寺</div>
+        <div class="day-status-row">
+          <div class="day-companions">
+            <span class="who-n joyce">Joyce</span>
+            <span class="who-n zoe">Zoe</span>
+            <span class="who-n hugo absent">Hugo</span>
+            <span class="who-n michael">Michael</span>
+          </div>
+          <div class="day-weather">25° / 19° · 涼爽舒適</div>
+        </div>
+      </div>
+
+      <ul class="timeline">
+        <li class="timeline-item">
+          <div class="timeline-time">08:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">Michael 出發美秀美術館
+              <span class="timeline-who"><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">京都站 → JR 石山駅 ~25 分。<strong>帝產巴士 150 號 3 號月台</strong>,每小時一班,~50 分。售票機購買「巴士 + 入場券」套票(現金或 IC 卡)。春季展期 2026/3/14 - 6/7,5/27 週三正常 10:00 - 17:00</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">08:15</div>
+          <div class="timeline-content">
+            <div class="timeline-title">清水寺 早晨
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span></span>
+            </div>
+            <div class="timeline-desc">06:00 開門,08:15 前人最少。從民宿走二寧坂三年坂上山(Day 1 已走過,可走另一側松原通)。本堂、舞台、音羽の滝</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">10:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">Joyce, Zoe 返民宿小休</div>
+            <div class="timeline-desc">回民宿換衣 / 整裝,準備午餐 · 約 2 小時悠閒時間</div>
+          </div>
+        </li>
+        <li class="timeline-item has-res">
+          <div class="timeline-time">12:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">土井活鰻 · 祇園八坂(鰻魚飯)
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span></span>
+            </div>
+            <div class="timeline-desc">12:30 - 14:30 · 2 小時用餐 · 2 人(Michael 在美秀)· <strong>需向餐廳更新人數</strong></div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">14:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">東寺 · 五重塔
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span></span>
+            </div>
+            <div class="timeline-desc">14:30 - 17:00 · 2.5 小時從容遊覽。從祇園的士 ¥1,500 ~15 分鐘。日本最高木塔 · 講堂立體曼荼羅(空海所設 21 尊密教佛像)· 金堂、寶物館 · 弘法大師信仰中心</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">17:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">3 人匯合 · 祇園漫步</div>
+            <div class="timeline-desc">Michael 從美秀 ~16:00 - 16:30 返京都 · Joyce, Zoe 從東寺的士 ~15 分回民宿 ~17:15。匯合後可民宿小休,或花見小路 · 白川南通 · 八坂塔下夜景</div>
+          </div>
+        </li>
+        <li class="timeline-item has-res">
+          <div class="timeline-time">19:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">KURO KYOTO
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">Hugo 已離開 · 3 人</div>
+          </div>
+        </li>
+        <li class="timeline-item has-res">
+          <div class="timeline-time">22:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">Hideout KICK Kyoto · Speakeasy
+              <span class="timeline-who"><span class="who-n joyce">Joyce</span><span class="who-n zoe">Zoe</span><span class="who-n michael">Michael</span></span>
+            </div>
+            <div class="timeline-desc">原 5/25 4 人 → 移至 5/27 3 人(Hugo 已離開)· 〒605-0073 東山区祇園町北側 347-9 サンシステム祇園ソーシャルビル 2 階 D 號室 · Google 4.9 星 · 雞尾酒 ¥2,000 - 3,000 / 人 · 從民宿走過四条通 5 - 10 分鐘</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="tier2">
+        <div class="tier2-label">Tier 2 · 飯後備案</div>
+        <ul class="tier2-list">
+          <li><strong>先斗町酒吧街</strong> · 若 Hideout KICK 後仍想多喝,從民宿過鴨川即達</li>
+          <li><strong>鴨川河畔夜涼散步</strong> · 5 月夜溫 ~19°C 適合</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DAY 6 ============ -->
+<section id="day-6">
+  <div class="wrap">
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num">Day Six · 5.28</div>
+        <h3 class="day-title">Easy Departure</h3>
+        <div class="day-cjk">輕鬆收尾 · 離開 KIX</div>
+        <div class="day-status-row">
+          <div class="day-companions">
+            <span class="who-n joyce">Joyce</span>
+            <span class="who-n zoe">Zoe</span>
+            <span class="who-n hugo absent">Hugo</span>
+            <span class="who-n michael">Michael</span>
+          </div>
+          <div class="day-weather">24° / 19°</div>
+        </div>
+      </div>
+
+      <ul class="timeline">
+        <li class="timeline-item">
+          <div class="timeline-time">07:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">起床 · 收行李</div>
+            <div class="timeline-desc">不趕,慢慢收</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">08:30</div>
+          <div class="timeline-content">
+            <div class="timeline-title">民宿早餐</div>
+            <div class="timeline-desc">附近 市川屋珈琲 5 分鐘步行,或民宿廚房自煮</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">10:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">硬性退房 ⚠</div>
+            <div class="timeline-desc">Karen 規定 10:00 必須退房 · 行李寄存或拖至京都站</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">11:00</div>
+          <div class="timeline-content">
+            <div class="timeline-title">Haruka → KIX</div>
+            <div class="timeline-desc">京都站 11:00 出發 · 12:15 抵 KIX(75 分鐘)</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">12:15</div>
+          <div class="timeline-content">
+            <div class="timeline-title">KIX 4 小時免稅店 + 慢餐</div>
+            <div class="timeline-desc"><strong>DFS</strong> · <strong>TIME&amp;STYLE</strong> · Pokemon Center · Royce · 北菓樓 · 慢慢挑、慢慢吃,享受不趕的最後一段</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-time">16:15</div>
+          <div class="timeline-content">
+            <div class="timeline-title">起飛回港</div>
+            <div class="timeline-desc">3 人同班機</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TODO ============ -->
+<section id="todo">
+  <div class="wrap">
+    <div class="section-eyebrow">Action items</div>
+    <h2 class="section-heading">出發前 <em>待辦</em></h2>
+    <p class="section-sub">已確認訂位 9 項 · 1 項需重訂(Hideout KICK)</p>
+
+    <ul class="todo-list">
+      <li>
+        <strong>Hideout KICK Kyoto · 重訂時間 + 人數 ⚠</strong>
+        原 5/25 22:30 4 人 → 改為 5/27 22:00 3 人(Hugo 此時已離開)· 需透過 Google Maps / Instagram DM 跟酒吧確認改期是否可行
+      </li>
+      <li>
+        <strong>土井活鰻 · 人數調整</strong>
+        5/27 中午訂位原為 4 人,Michael 此時在美秀,實際 2 人(Joyce + Zoe)。出發前向餐廳更新
+      </li>
+      <li>
+        <strong>美秀美術館 · Michael Day 5 已驗證</strong>
+        春季展期 2026/3/14 - 6/7,5/27 週三正常 10:00 - 17:00(週一休)。出發前再查當日帝產巴士 150 號時刻表(石山駅 → 美秀,約每小時一班)。石山駅 3 號月台旁的售票機可購買「巴士 + 入場券」套票(現金或 IC 卡)
+      </li>
+      <li>
+        <strong>Michael · Day 3 工作日協調</strong>
+        Michael 5/25 在民宿工作,只赴 14:00 pizza + 16:00 theater + 19:00 米處 三個訂位。出發前跟 Michael 確認此安排,並確認民宿 WiFi 穩定 + 工作時段隔音
+      </li>
+      <li>
+        <strong>整體行李</strong>
+        5 月京都早晚溫差大(高溫日 31°C / 涼日 16°C),帶薄外套 + 透氣短袖。Hideout KICK 為 speakeasy,穿著稍微修飾佳
+      </li>
+    </ul>
+  </div>
+</section>
+
+<div class="ornament">· · ·</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">京都 · 二〇二六年五月</div>
+    <div class="footer-meta">Kyoto · MMXXVI · v22</div>
+  </div>
+</footer>
+
+<script>
+  // Active nav highlighting on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-scroll a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('is-active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-50% 0px -50% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
