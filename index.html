@@ -919,12 +919,72 @@
     font-size: 13px;
     color: var(--ink-soft);
     line-height: 1.7;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     padding: 14px 16px;
     background: var(--paper-light);
     border-left: 2px solid var(--joyce);
     border-radius: 0 4px 4px 0;
   }
+
+  .sync-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+    padding: 6px 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+  }
+  .sync-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #aaa;
+    flex-shrink: 0;
+  }
+  .sync-status[data-state="synced"] .sync-dot { background: #4a9d4a; }
+  .sync-status[data-state="syncing"] .sync-dot { background: #c89a3a; animation: sync-pulse 1.1s ease-in-out infinite; }
+  .sync-status[data-state="offline"] .sync-dot { background: #b04a3a; }
+  .sync-status[data-state="setup"]   .sync-dot { background: #888; }
+  @keyframes sync-pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+  .sync-refresh {
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    line-height: 1;
+    padding: 0;
+    cursor: pointer;
+    color: var(--ink-soft);
+    font-size: 12px;
+    font-family: inherit;
+  }
+  .sync-refresh:hover { background: var(--paper-light); }
+  .sync-setup {
+    font-family: var(--serif-cjk);
+    font-size: 12px;
+    line-height: 1.8;
+    color: var(--ink);
+    background: #fff8e6;
+    border: 1px solid #e0c87a;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  .sync-setup code {
+    background: rgba(0,0,0,0.06);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 11px;
+  }
+  .sync-setup a { color: var(--joyce); }
 
   .exp-form {
     background: var(--surface);
@@ -2341,7 +2401,21 @@
     <p class="section-sub">記錄共同消費 · 一鍵計算最簡結算</p>
 
     <div class="expense-intro">
-      四人於此記入各自代墊的<strong>共同消費</strong>(個人消費請勿輸入)。結束時按 <strong>結算 Settle</strong>,系統將自動計算最少筆數的轉帳方案。<strong>每筆輸入後,網址會自動更新並保存所有資料</strong>——請將當前網址加入書籤或分享,即可跨裝置/瀏覽器使用,iOS Safari 清快取也不會遺失。
+      四人於此記入各自代墊的<strong>共同消費</strong>(個人消費請勿輸入)。結束時按 <strong>結算 Settle</strong>,系統將自動計算最少筆數的轉帳方案。<strong>資料即時同步雲端</strong>——任何人在此頁新增/刪除,其他人重新整理即可看到。
+    </div>
+
+    <div id="sync-status" class="sync-status" data-state="idle">
+      <span class="sync-dot"></span>
+      <span class="sync-label">準備中…</span>
+      <button type="button" class="sync-refresh" id="sync-refresh" title="重新整理 · Refresh">↻</button>
+    </div>
+
+    <div id="sync-setup" class="sync-setup" hidden>
+      <strong>⚙ 雲端同步尚未設定</strong><br>
+      1. 前往 <a href="https://www.npoint.io/" target="_blank" rel="noopener">npoint.io</a>,貼上 <code>[]</code> 後按 <em>Save</em>。<br>
+      2. 複製網址尾段的 bin ID(<code>https://www.npoint.io/docs/<strong>xxxxxx</strong></code>)。<br>
+      3. 在 <code>index.html</code> 找到 <code>NPOINT_BIN_ID = ''</code>,將 ID 貼入引號內,commit + push。<br>
+      設定完成前,本頁僅儲存在你的瀏覽器(localStorage + 網址)。
     </div>
 
     <!-- Input Form -->
@@ -2452,10 +2526,20 @@
   // ============================================================
   const STORAGE_KEY = 'kyoto-expenses';
   const URL_PARAM = 'e';
+  // ⬇ Paste your npoint.io bin ID here (see setup banner on page if empty).
+  //   Steps: visit https://www.npoint.io/, paste [] into the editor, click Save,
+  //   then copy the slug from the URL (https://www.npoint.io/docs/<slug>).
+  const NPOINT_BIN_ID = '';
+  const NPOINT_URL = NPOINT_BIN_ID ? `https://api.npoint.io/${NPOINT_BIN_ID}` : '';
+  const POLL_INTERVAL_MS = 20000;
+  const PUSH_DEBOUNCE_MS = 700;
   const PEOPLE = ['Joyce', 'Zoe', 'Hugo', 'Michael'];
   const PERSON_CLASSES = { Joyce: 'joyce', Zoe: 'zoe', Hugo: 'hugo', Michael: 'michael' };
 
   let expenses = [];
+  let lastRemoteSnapshot = '';     // JSON string of last successful sync
+  let pushTimer = null;
+  let pollTimer = null;
 
   // Encode expenses → base64url JSON with short keys (compact for URL)
   function encodeExpenses(arr) {
@@ -2495,8 +2579,16 @@
     history.replaceState(null, '', newUrl);
   }
 
-  // Load: URL query first (survives Safari ITP wipes), then localStorage
-  function loadExpenses() {
+  // ---------- Sync status UI ----------
+  function setSyncStatus(state, label) {
+    const el = document.getElementById('sync-status');
+    if (!el) return;
+    el.dataset.state = state;
+    el.querySelector('.sync-label').textContent = label;
+  }
+
+  // ---------- Local-only fallback load (URL → localStorage) ----------
+  function loadLocal() {
     const params = new URLSearchParams(window.location.search);
     const urlData = params.get(URL_PARAM);
     if (urlData) {
@@ -2504,16 +2596,118 @@
       if (decoded) {
         expenses = decoded;
         try { localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses)); } catch (e) {}
-        return;
+        return true;
       }
     }
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       expenses = stored ? JSON.parse(stored) : [];
       if (expenses.length) updateUrlState();
+      return expenses.length > 0;
     } catch (e) {
-      console.error('Load failed:', e);
       expenses = [];
+      return false;
+    }
+  }
+
+  // ---------- Remote sync (npoint.io) ----------
+  async function fetchRemote() {
+    if (!NPOINT_URL) return null;
+    const res = await fetch(NPOINT_URL, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`GET ${res.status}`);
+    const data = await res.json();
+    return Array.isArray(data) ? data : [];
+  }
+
+  async function pushRemote() {
+    if (!NPOINT_URL) return;
+    pushTimer = null;
+    const payload = JSON.stringify(expenses);
+    if (payload === lastRemoteSnapshot) return;
+    setSyncStatus('syncing', '↻ 同步中…');
+    try {
+      const res = await fetch(NPOINT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: payload,
+      });
+      if (!res.ok) throw new Error(`POST ${res.status}`);
+      lastRemoteSnapshot = payload;
+      setSyncStatus('synced', '☁ 已同步 Synced');
+    } catch (e) {
+      console.error('Push failed:', e);
+      setSyncStatus('offline', '⚠ 離線 · 稍後重試');
+    }
+  }
+
+  function schedulePush() {
+    if (!NPOINT_URL) return;
+    clearTimeout(pushTimer);
+    pushTimer = setTimeout(pushRemote, PUSH_DEBOUNCE_MS);
+  }
+
+  function hasUnsyncedChanges() {
+    return JSON.stringify(expenses) !== lastRemoteSnapshot;
+  }
+
+  async function pullAndRender() {
+    if (!NPOINT_URL) return;
+    // Don't clobber unsynced local edits — try to push them instead
+    if (pushTimer || hasUnsyncedChanges()) {
+      if (hasUnsyncedChanges()) {
+        clearTimeout(pushTimer); pushTimer = null;
+        await pushRemote();
+      }
+      return;
+    }
+    try {
+      const remote = await fetchRemote();
+      if (remote === null) return;
+      const remoteJson = JSON.stringify(remote);
+      if (remoteJson !== JSON.stringify(expenses)) {
+        expenses = remote;
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses)); } catch (e) {}
+        updateUrlState();
+        if (typeof render === 'function') render();
+      }
+      lastRemoteSnapshot = remoteJson;
+      setSyncStatus('synced', '☁ 已同步 Synced');
+    } catch (e) {
+      console.error('Pull failed:', e);
+      setSyncStatus('offline', '⚠ 離線');
+    }
+  }
+
+  async function loadExpenses() {
+    if (!NPOINT_URL) {
+      document.getElementById('sync-setup').hidden = false;
+      document.getElementById('sync-status').hidden = true;
+      loadLocal();
+      return;
+    }
+    setSyncStatus('syncing', '↻ 載入中…');
+    try {
+      const remote = await fetchRemote();
+      if (remote && remote.length) {
+        expenses = remote;
+        lastRemoteSnapshot = JSON.stringify(remote);
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses)); } catch (e) {}
+        updateUrlState();
+        setSyncStatus('synced', '☁ 已同步 Synced');
+      } else {
+        // Remote is empty — seed it from local (URL/localStorage) if we have anything
+        const hadLocal = loadLocal();
+        if (hadLocal) {
+          await pushRemote();
+        } else {
+          lastRemoteSnapshot = '[]';
+          setSyncStatus('synced', '☁ 已同步 Synced');
+        }
+      }
+    } catch (e) {
+      console.error('Initial fetch failed:', e);
+      loadLocal();
+      setSyncStatus('offline', '⚠ 離線 · 顯示本機資料');
     }
   }
 
@@ -2524,6 +2718,20 @@
       console.error('Save failed:', e);
     }
     updateUrlState();
+    schedulePush();
+  }
+
+  // Periodic pull + on tab focus
+  function startPolling() {
+    if (!NPOINT_URL) return;
+    clearInterval(pollTimer);
+    pollTimer = setInterval(() => {
+      if (document.visibilityState === 'visible') pullAndRender();
+    }, POLL_INTERVAL_MS);
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') pullAndRender();
+    });
+    window.addEventListener('focus', pullAndRender);
   }
 
   // Format JPY
@@ -2859,10 +3067,18 @@
     ev.target.value = '';  // Reset for re-import same file
   });
 
+  // Manual refresh button (in sync status pill)
+  const syncRefreshBtn = document.getElementById('sync-refresh');
+  if (syncRefreshBtn) {
+    syncRefreshBtn.addEventListener('click', pullAndRender);
+  }
+
   // Initialize
-  loadExpenses();
   setDefaultDate();
-  render();
+  loadExpenses().then(() => {
+    render();
+    startPolling();
+  });
 
   // ============================================================
   // NAV — active highlighting on scroll
