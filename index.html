@@ -2341,7 +2341,7 @@
     <p class="section-sub">記錄共同消費 · 一鍵計算最簡結算</p>
 
     <div class="expense-intro">
-      四人於此記入各自代墊的<strong>共同消費</strong>(個人消費請勿輸入)。結束時按 <strong>結算 Settle</strong>,系統將自動計算最少筆數的轉帳方案。資料儲存於本機瀏覽器,可<strong>匯出 JSON</strong> 分享他人。
+      四人於此記入各自代墊的<strong>共同消費</strong>(個人消費請勿輸入)。結束時按 <strong>結算 Settle</strong>,系統將自動計算最少筆數的轉帳方案。<strong>每筆輸入後,網址會自動更新並保存所有資料</strong>——請將當前網址加入書籤或分享,即可跨裝置/瀏覽器使用,iOS Safari 清快取也不會遺失。
     </div>
 
     <!-- Input Form -->
@@ -2425,7 +2425,8 @@
       <div class="transfers" id="settle-transfers"></div>
     </div>
 
-    <!-- Import / Export -->
+    <!-- Share / Import / Export -->
+    <button class="exp-btn exp-btn-secondary" id="exp-copy-link" style="margin-top:6px;">⎘ 複製分享網址 · Copy Link</button>
     <div class="exp-actions">
       <button class="exp-btn exp-btn-secondary" id="exp-export">⇣ 匯出 JSON</button>
       <button class="exp-btn exp-btn-secondary" id="exp-import">⇡ 匯入 JSON</button>
@@ -2450,16 +2451,66 @@
   // EXPENSE TRACKER
   // ============================================================
   const STORAGE_KEY = 'kyoto-expenses';
+  const URL_PARAM = 'e';
   const PEOPLE = ['Joyce', 'Zoe', 'Hugo', 'Michael'];
   const PERSON_CLASSES = { Joyce: 'joyce', Zoe: 'zoe', Hugo: 'hugo', Michael: 'michael' };
 
   let expenses = [];
 
-  // Load from localStorage
+  // Encode expenses → base64url JSON with short keys (compact for URL)
+  function encodeExpenses(arr) {
+    if (!arr.length) return '';
+    const compact = arr.map(e => ({
+      i: e.id, d: e.date, n: e.name, a: e.amount, p: e.paidBy, f: e.paidFor
+    }));
+    const json = JSON.stringify(compact);
+    return btoa(unescape(encodeURIComponent(json)))
+      .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+
+  function decodeExpenses(str) {
+    try {
+      const pad = str.length % 4 === 0 ? '' : '='.repeat(4 - (str.length % 4));
+      const b64 = (str + pad).replace(/-/g, '+').replace(/_/g, '/');
+      const json = decodeURIComponent(escape(atob(b64)));
+      const arr = JSON.parse(json);
+      if (!Array.isArray(arr)) return null;
+      return arr.map(e => ({
+        id: e.i, date: e.d, name: e.n, amount: e.a, paidBy: e.p, paidFor: e.f
+      }));
+    } catch (e) {
+      console.error('URL decode failed:', e);
+      return null;
+    }
+  }
+
+  // Mirror current expenses into the URL query string (preserves hash for nav anchors)
+  function updateUrlState() {
+    const params = new URLSearchParams(window.location.search);
+    const encoded = encodeExpenses(expenses);
+    if (encoded) params.set(URL_PARAM, encoded);
+    else params.delete(URL_PARAM);
+    const qs = params.toString();
+    const newUrl = window.location.pathname + (qs ? '?' + qs : '') + window.location.hash;
+    history.replaceState(null, '', newUrl);
+  }
+
+  // Load: URL query first (survives Safari ITP wipes), then localStorage
   function loadExpenses() {
+    const params = new URLSearchParams(window.location.search);
+    const urlData = params.get(URL_PARAM);
+    if (urlData) {
+      const decoded = decodeExpenses(urlData);
+      if (decoded) {
+        expenses = decoded;
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses)); } catch (e) {}
+        return;
+      }
+    }
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       expenses = stored ? JSON.parse(stored) : [];
+      if (expenses.length) updateUrlState();
     } catch (e) {
       console.error('Load failed:', e);
       expenses = [];
@@ -2471,8 +2522,8 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses));
     } catch (e) {
       console.error('Save failed:', e);
-      alert('儲存失敗 · 瀏覽器空間不足');
     }
+    updateUrlState();
   }
 
   // Format JPY
@@ -2738,6 +2789,32 @@
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  });
+
+  // Copy shareable link (current URL with expense data in query string)
+  document.getElementById('exp-copy-link').addEventListener('click', async () => {
+    updateUrlState();
+    const link = window.location.href;
+    const btn = document.getElementById('exp-copy-link');
+    const original = btn.textContent;
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(link);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = link;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      btn.textContent = '✓ 已複製 · Copied';
+      setTimeout(() => { btn.textContent = original; }, 1800);
+    } catch (e) {
+      prompt('複製失敗 · 請手動複製以下網址:', link);
+    }
   });
 
   // Import JSON
